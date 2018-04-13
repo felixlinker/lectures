@@ -1,0 +1,108 @@
+\documentclass{article}
+\usepackage{amsmath,amsthm,amssymb}
+\usepackage[utf8]{inputenc}
+\usepackage[ngerman]{babel}
+
+\title{Skript Logik- und Modelltheorie}
+\author{Felix Linker}
+\date{SS2018}
+
+\theoremstyle{definition}
+\newtheorem{dfn}{Definition}
+
+\newcommand{\calF}{\mathcal{F}}
+\newcommand{\calK}{\mathcal{K}}
+\newcommand{\calM}{\mathcal{M}}
+\newcommand{\calN}{\mathcal{N}}
+\newcommand{\calR}{\mathcal{R}}
+
+\begin{document}
+
+    \maketitle
+
+    \section{Grundlagen}
+
+    Mathematische Objekte bestehen aus Grundmengen ggf. Relationen, Funktionen und Konstanten.
+
+    Einfache Aussagen betreffen nur Elemente der Grundmenge und haben keine unendlichen Dis- oder Konjunktionen.
+    Dies sind prädikatenlogische Aussagen erster Stufe.
+
+    \textit{Monadische Aussagen 2. Stufe erlaubten Quantifizierung über Teilmengen der Grundmenge; Aussagen 2. Stufe erlaubten zstl. Quantifizierung über Funktionen und Relationen.}
+
+    \subsection{Strukturen}
+
+    \begin{dfn}
+        Eine \underline{Signatur} $ \sigma $ ist ein Quadrupel
+        \begin{equation}
+            \sigma = (\varphi, \calF, \calR, \sigma')
+        \end{equation}
+        mit einer Menge von Konstantensymbolen $ \varphi $, einer Menge von Funktionssymbolen $ \calF $, einer Menge von Relationensymbolen $ \calR $, einer Stelligkeitsfunktion $ \sigma' : \calF \cup \calR \rightarrow \mathbb{N} $.
+    \end{dfn}
+
+    \begin{dfn}
+        Eine \underline{Struktur} $ \calM $ ist ein Quadrupel
+        \begin{equation}
+            \calM = \big(M, (c^\calM)_{c \in \varphi}, (f^\calM)_{f \in \calF}, (R^\calM)_{R \in \calR}\big)
+        \end{equation}
+        mit einer Menge $ M $ (oftmals $ M \neq \emptyset $), Indexmengen $ \varphi, \calF, \calR $.
+        Wobei gilt $ c^\calM \in M $ für $ c \in \varphi $, $ f^\calM : M^{n_f} \rightarrow M $, $ n_f \in \mathbb{N} $ für $ f \in \calF $, $ R^\calM \subseteq M^{m_R} $ für $ R \in \calR $.
+    \end{dfn}
+
+    $ \calM $ heißt \underline{$ \sigma $-Struktur} bzw. $ \calM $ und $ \sigma $ \underline{passen zueinander}, falls:
+    \begin{enumerate}
+        \item $ n_f = \sigma'(f) $ für $ f \in \calF $
+        \item $ m_R = \sigma'(R) $ für $ R \in \calR $
+    \end{enumerate}
+
+    $ c^\calM $ heißt auch \underline{Interpretation} von $ c $ in $ \calM $; Analoges gilt für $ f^\calM, R^\calM $.
+
+    \begin{dfn}
+        Seien $ \calM $, $ \calN $ zwei $ \sigma $-Strukturen.
+        Ein Homomorphismus von $ \calM $ nach $ \calN $ ist eine Abbilung $ h : \calM \rightarrow \calN $ mit:
+        \begin{enumerate}
+            \item $ h(c^\calM) = c^\calN $ für allen Konstantensymbole $ c \in \varphi $
+            \item $ h\big(f^\calM(a_1, ..., a_n)\big) = f^\calF\big(h(a_1), ..., h(a_n)\big) $ für alle Funktionssymbole $ f \in \calF $ mit $ n = \sigma'(f) $, $ a_1, ..., a_n \in M $.
+            \item \label{itm:homomorphismus-3} $ (a_1, ..., a_n) \in R^\calM \Rightarrow \big(h(a_1), ..., h(a_n)) \in R^\calN $ für alle Relationensymbole $ R \in \calR $, $ n = \sigma'(R) $, $ a_1, ..., a_n \ in M $.
+        \end{enumerate}
+    \end{dfn}
+
+    Für einen Homomorphismus $ h $ von $ \calM $ nach $ \calN $ schreibt man auch $ h : \calM \rightarrow \calN $.
+
+    $ h $ heißt \underline{stark}, wenn für alle $ R \in \calR $ mit $ n = \sigma'(R) $, $ b_1, ..., b_n \in h(M) \subseteq N $ mit $ (b_1, ..., b_n) \ in R^\calN $ gilt:
+    \begin{equation}
+        \label{eq:staerke}
+        \exists a_1, ..., a_n \in M : (a_1, ..., a_n) \in R^\calM, h(a_i) = b_i, 1 \leq i \leq n
+    \end{equation}
+
+    $ h $ heißt \underline{Einbettung}, falls $ h $ stark und injektiv ist.
+    Ist $ h $ injektiv, dann lassen sich Bedingung \ref{itm:homomorphismus-3} und Gleichung \eqref{eq:staerke} folgendermaßen zusammenfassen; für alle $ R \in \calR $, $ n = \sigma'(R) $, $ a_1, ..., a_n \in M $:
+    \begin{equation}
+        (a_1, ..., a_n) \in R^\calM \Leftrightarrow \big(h(a_1), ..., h(a_n)\big) \in R^\calN
+    \end{equation}
+
+    $ h $ heißt Isomorphimus, wenn $ h $ eine surjektive Einbettung ist.
+    Man schreibt $ \calM \cong \calN $, wenn ein Isomorphimus $ h : \calM \rightarrow \calN $ existiert.
+    Sind $ h : \calM \rightarrow \calN $, $ g : \calN \rightarrow \calK $ Isomorphismen, dann sind auch folgende Funktionen ein Isomorphimus:
+    \begin{itemize}
+        \item $ h^{-1} $
+        \item $ g \circ h : \calM \rightarrow \calK $
+    \end{itemize}
+
+    $ h : \calM \Rightarrow \calM $ heißt \underline{Automorphismus von $ \calM $}, wenn $ h $ ein Isomorphimus ist.
+    Die Struktur $ Aut(\calM) = \big( \{ h : \calM \rightarrow \calM \mid h \text{ Automorphismus} \}, \circ \big) $ mit Komposition $ \circ $ ist eine Gruppe.
+
+    \begin{dfn}
+        Seien $ \calM $, $ \calN $ $\sigma $-Strukturen.
+        $ \calN $ heißt \underline{Teil-/Unter-/Substruktur} von $ \calM $, falls:
+        \begin{enumerate}
+            \item $ N \subseteq M $
+            \item $ c^\calN = c^\calM $ für $ c \in \varphi $
+            \item $ f^\calN(\bar{a}) = f^\calM(\bar{a}) $ für $ f \in \calF $, $ \bar{a} \in N^{\sigma'(f)} $
+            \item $ \bar{a} \in R^\calN \Leftrightarrow \bar{a} \in R^\calM $, d.~h. $ R^\calN = R^\calM \cap N^{\sigma'(R)} $ für $ \bar{a} \in N^{\sigma'(R)} $
+        \end{enumerate}
+    \end{dfn}
+
+    Wenn $ \calN $ eine Teilstruktur von $ \calM $ ist, schreibt man auch $ \calN \subseteq \calM $.
+    $ \calM $ wird dann auch \underline{Ober- oder Erweiterungsstruktur von $ \calN $} genannt.
+
+\end{document}
