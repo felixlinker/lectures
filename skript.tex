@@ -24,6 +24,7 @@
 
 \newcommand{\calC}{\mathcal{C}}
 \newcommand{\calF}{\mathcal{F}}
+\newcommand{\calG}{\mathcal{G}}
 \newcommand{\calK}{\mathcal{K}}
 \newcommand{\calM}{\mathcal{M}}
 \newcommand{\calN}{\mathcal{N}}
@@ -120,5 +121,99 @@
 
     Wenn $ \calN $ eine Teilstruktur von $ \calM $ ist, schreibt man auch $ \calN \subseteq \calM $.
     $ \calM $ wird dann auch \underline{Ober- oder Erweiterungsstruktur von $ \calN $} genannt.
+
+    \begin{dfn}
+        Seien $ \sigma_0 = \sign{0} $, $ \sigma_1 = \sign{1} $ zwei Signaturen.
+        Wir definieren $ \sigma_0 \subseteq \sigma_1 $, d.~h. $ \calC_0 \subseteq \calC_1 $, $ \calF_0 \subseteq \calF_1 $, $ \calR_0 \subseteq \calR_1 $ und $ \sigma'_0 = \sigma'_1 \vert_{\calF_0 \cup \calR_0} $ .
+
+        Sei $ \calM $ eine $ \sigma_1 $-Struktur.
+        Dann heißt $ \calM \vert_{\sigma_0} = \struc{M}{\calM}{} $ das \underline{Redukt} von $ \calM $ auf $ \sigma_0 $ od. auch $ \sigma_0 $-Redukt.
+        Umgekehrt heißt $ \calM $ \underline{Expansion} von $ \calN := \calM \vert_{sigma_0} $ auf $ \sigma_1 $, d.~h. $ \calM $ entsteht aus $ \calN $ durch Hinzunahme geeigneter (bzgl. $ \sigma_1 $) Konstanten/Funktionen/Relationen.
+    \end{dfn}
+
+    \begin{exm}
+        Betrachten wir die Gruppe $ \calG = (G, 1^\calG, \circ^\calG) $.
+        $ \calG $ ist ein Redukt von $ (G, 1^\calG, \circ^\calG, \circ^{-1\calG}) $.
+        Von $ \calR = (R, 0, 1, +, \cdot) $ ist $ (R, 0, +) $ ein Redukt.
+    \end{exm}
+
+    Eine Signatur $ \sigma = \sign{} $ heißt \underline{konstantenlos}, falls $ \calC = \emptyset $ und \underline{(rein) relational}, falls $ \calC = \calF = \emptyset $.
+
+    \section{Sprachen und Formeln}
+
+    Wunsch: Formeln der Form $ \forall x. (x \geq 0 \rightarrow \exists y. x = y \cdot y) $.
+
+    Gegeben eine Signatur $ \sigma = \sign{} $.
+    \underline{Grundsymbole} der Sprache $ L = L(\sigma) $ sind:
+    \begin{enumerate}
+        \item abzählbar viele Variablen $ v_n $, $ n \in \mathbb{N} $
+        \item die Symbole von $ \sigma $ auf $ \calC \cup \calF \cup \calR $ (nichtlogische Symbole)
+        \item Logisch Zeichen: $ \neg, \land, = $
+        \item Quantor $ \exists $
+        \item Klammersymbole $ ( $ und $ ) $
+    \end{enumerate}
+
+    Die Menge der \underline{Terme} von $ \sigma $ oder $ L(\sigma) $ ist die kleinste Menge für die gilt:
+    \begin{enumerate}
+        \item Alle Variablen $ v_n $, $ n \in \mathbb{N} $ sind ein Term.
+        \item Alle Konstantensymbole $ c \in \calC $ sind ein Term.
+        \item Wenn $ t_1, ..., t_n $ Terme sind, $ f \in \calF $ mit $ \sigma'(f) = n $, dann ist auch $ f(t_1, ..., t_n) $ ein Term.
+    \end{enumerate}
+
+    Die Menge der \underline{Atomformeln} bzgl. $ \sigma $ ist die kleinste Menge für die gilt:
+    \begin{enumerate}
+        \item Wenn $ t_1, t_2 $ Terme sind, dann ist $ t_1 = t_2 $ eine Atomformel,
+        \item Wenn $ t_1, ..., t_n $ Terme sind, $ R \in \calR $ mit $ \sigma'(R) = n $, dann ist $ R(t_1, ..., t_n) $ eine Atomformel.
+    \end{enumerate}
+
+    Die Menge der \underline{Formeln} bzgl. $\sigma $ ist die kleineste Menge für die gilt:
+    \begin{enumerate}
+        \item Jede Atomformel ist eine Formel.
+        \item Wenn $ \phi, \psi $ Formeln sind, $ x = v_n $ $ n \in \mathbb{N} $ Variable, dann sind auch $ \neg \phi$, $ (\phi \land \psi) $, $ (\exists x) \phi $ Formeln.
+    \end{enumerate}
+
+    $ L(\sigma) := $ Menge der Formeln bzgl. $ \sigma $.
+    Abkürzungen für zwei Formeln $ \phi , \psi \in L(\sigma) $ sind wie üblich definiert:
+    \begin{itemize}
+        \item $ \phi \lor \psi := \neg (\neg \phi \land \neg \psi) $
+        \item $ \phi \rightarrow \psi := \neg \phi \lor \psi $
+        \item $ \phi \leftrightarrow \psi := (\phi \rightarrow \psi) \land (\psi \rightarrow \phi) $
+        \item $ (\forall x) \phi := \neg (\exists x) \neg \phi $
+    \end{itemize}
+
+    Die Grundsymbole sind von $ L(\sigma) $ sind absichtlich so spärlich definiert, da Beweise oftmals über den Aufbau von Formeln geführt werden und in diesem Fall minimal-viele Zeichen in Beweisen berücksichtigt werden müssen.
+
+    Seien $ x $ eine Variable $ \phi $ und eine Formel. Der \underline{(Wirkungs-)Bereich} eines Quantors $ (\exists x) \phi $ ist definiert als $ \phi $.
+    Ein Vorkommen von $ x $ im Bereich von $ (\exists x) $ heißt \underline{gebunden}.
+    Ist $ x $ nicht im Bereich eines Quantors, so heißt dieses Vorkommen \underline{frei}.
+    $ x $ ist eine \underline{freie Variable}, wenn $ x $ an mindestens einer Stelle frei vorkommt; ansonsten heißt $ x $ \underline{gebunden}.
+
+    Eine Formel $ \phi $ heißt \underline{Aussage} oder \underline{Satz}, falls $ \phi $ keine freien Variablen enthält.
+
+    Nun sei $ \calM = \struc{M}{\calM}{} $ eine $ \sigma $-Struktur.
+    Wir wollen die Gültigkeit von Formeln $ \phi $ in $ \calM $ induktiv definieren.
+    Jedes Tupel $ x = (x_i)_{i \in \mathbb{N}} $ mit $ x_i \in M $ ($ x \in M^{\mathbb{N}} $) heißt eine Bewertung der Variablen $ v_i $, $ i \in \mathbb{N} $ von $ L $.
+    Ist $ n \in \mathbb{N} $ und $ a \in M $, so sei $ x(n/a) := (x_1, ..., x_{n-1}, a, x_{n+1}, ...) $ die \underline{Aktualisierung} od. \underline{Update} von $ x $ an der Stelle $ n $ durch $ a $.
+
+    \begin{dfn}
+        Sei $ \calM = \struc{M}{\calM}{} $ eine $ \sigma $-Struktur, $ x \in M^{\mathbb{N}} $.
+        Der \underline{Wert} eines Terms $ t $ in $ (\calM, x) $ sei:
+        \begin{enumerate}
+            \item $ t^{(\calM, x)} := x_n $, falls $ t = v_n $ Variable
+            \item $ t^{(\calM, x)} := c^\calM $, falls $ t = c $ Konstantensymbol
+            \item $ t^{(\calM, x)} := f^\calM(t_1^{(\calM, x)}, ..., t_n^{(\calM, x)}) $, falls $ t = f(t_1, ..., t_n) $ mit Funktionssymbol $ f \in \calF $, $ \sigma'(f) = n $ und Termen $ t_1, ..., t_n $
+        \end{enumerate}
+    \end{dfn}
+
+    \begin{dfn}
+        Wir definieren: $ (\calM, x) $ \underline{erfüllt} die Formel $ \phi $ oder $ phi $ \underline{gilt} in $ (\calM, x) $ (wir schreiben $ (\calM, x) \models \phi $ od. $ \calM \models \phi[x] $), wie folgt:
+        \begin{itemize}
+            \item $ (\calM, x) \models t_1 = t_2 $, wenn $ t^{(\calM, x)}_1 = t^{(\calM, x)}_2 $
+            \item $ (\calM, x) \models R(t_1, ..., t_n) $, wenn $ (t_1^{(\calM, x)}, ..., t_n^{(\calM, x)}) \in R^\calM $
+            \item $ (\calM, x) \models \phi \land \psi $, wenn $ (\calM, x) \models \phi $ und $ (\calM, x) \models \psi $
+            \item $ (\calM, x) \models \neg \phi $, wenn nicht $ (\calM, x) \models \phi $
+            \item $ (\calM, x) \models (\exists v_n) \phi $, wenn ein $ a \in M $ mit $ (\calM, x(n/a)) \models \phi $ existiert
+        \end{itemize}
+    \end{dfn}
 
 \end{document}
