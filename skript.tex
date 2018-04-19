@@ -28,6 +28,9 @@
 \newcommand{\calN}{\mathcal{N}}
 \newcommand{\calR}{\mathcal{R}}
 
+\newcommand{\sign}[1]{(\calC_{#1}, \calF_{#1}, \calR_{#1}, \sigma'_{#1})}
+\newcommand{\struc}[3]{\big(#1, (c^{#2})_{c \in \calC_{#3}}, (f^{#2})_{f \in \calF_{#3}}, (R^{#2})_{R \in \calR_{#3}}\big)}
+
 \begin{document}
 
     \maketitle
@@ -46,7 +49,7 @@
     \begin{dfn}
         Eine \underline{Signatur} $ \sigma $ ist ein Quadrupel
         \begin{equation}
-            \sigma = (\calC, \calF, \calR, \sigma')
+            \sigma = \sign{}
         \end{equation}
         mit einer Menge von Konstantensymbolen $ \calC $, einer Menge von Funktionssymbolen $ \calF $, einer Menge von Relationensymbolen $ \calR $, einer Stelligkeitsfunktion $ \sigma' : \calF \cup \calR \rightarrow \mathbb{N} $.
     \end{dfn}
@@ -54,7 +57,7 @@
     \begin{dfn}
         Eine \underline{Struktur} $ \calM $ ist ein Quadrupel
         \begin{equation}
-            \calM = \big(M, (c^\calM)_{c \in \calC}, (f^\calM)_{f \in \calF}, (R^\calM)_{R \in \calR}\big)
+            \calM = \struc{M}{\calM}{}
         \end{equation}
         mit einer Menge $ M $ (oftmals $ M \neq \emptyset $), Indexmengen $ \calC, \calF, \calR $.
         Wobei gilt $ c^\calM \in M $ für $ c \in \calC $, $ f^\calM : M^{n_f} \rightarrow M $, $ n_f \in \mathbb{N} $ für $ f \in \calF $, $ R^\calM \subseteq M^{m_R} $ für $ R \in \calR $.
