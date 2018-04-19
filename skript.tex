@@ -1,5 +1,6 @@
 \documentclass{article}
 \usepackage{amsmath,amsthm,amssymb}
+\usepackage{etoolbox}
 \usepackage[utf8]{inputenc}
 \usepackage[ngerman]{babel}
 
@@ -9,6 +10,16 @@
 
 \theoremstyle{definition}
 \newtheorem{dfn}{Definition}
+
+% make definition numbering to prefix section number
+\makeatletter
+\@addtoreset{dfn}{section}
+\newcommand{\dfnprefix}{}
+\let\thedfnsaved\thedfn
+\renewcommand{\thedfn}{\dfnprefix\thedfnsaved}
+\let\sectionsaved\section
+\patchcmd{\@startsection}{\par}{\renewcommand{\dfnprefix}{\csname the#1\endcsname.}}{}{}
+\makeatother
 
 \newcommand{\calF}{\mathcal{F}}
 \newcommand{\calK}{\mathcal{K}}
