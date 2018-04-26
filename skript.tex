@@ -8,6 +8,7 @@
 \author{Felix Linker}
 \date{SS2018}
 
+\newtheorem*{bem}{Bemerkung}
 \theoremstyle{definition}
 \newtheorem{dfn}{Definition}
 \newtheorem*{exm}{Beispiel}
@@ -22,6 +23,7 @@
 \patchcmd{\@startsection}{\par}{\renewcommand{\dfnprefix}{\csname the#1\endcsname.}}{}{}
 \makeatother
 
+\newcommand{\calA}{\mathcal{A}}
 \newcommand{\calC}{\mathcal{C}}
 \newcommand{\calF}{\mathcal{F}}
 \newcommand{\calG}{\mathcal{G}}
@@ -206,14 +208,136 @@
     \end{dfn}
 
     \begin{dfn}
-        Wir definieren: $ (\calM, x) $ \underline{erfüllt} die Formel $ \phi $ oder $ phi $ \underline{gilt} in $ (\calM, x) $ (wir schreiben $ (\calM, x) \models \phi $ od. $ \calM \models \phi[x] $), wie folgt:
+        Wir definieren: $ (\calM, x) $ \underline{erfüllt} die Formel $ \varphi $ oder $ \varphi $ \underline{gilt} in $ (\calM, x) $ (wir schreiben $ (\calM, x) \models \varphi $ od. $ \calM \models \varphi[x] $), wie folgt:
         \begin{itemize}
             \item $ (\calM, x) \models t_1 = t_2 $, wenn $ t^{(\calM, x)}_1 = t^{(\calM, x)}_2 $
             \item $ (\calM, x) \models R(t_1, ..., t_n) $, wenn $ (t_1^{(\calM, x)}, ..., t_n^{(\calM, x)}) \in R^\calM $
-            \item $ (\calM, x) \models \phi \land \psi $, wenn $ (\calM, x) \models \phi $ und $ (\calM, x) \models \psi $
-            \item $ (\calM, x) \models \neg \phi $, wenn nicht $ (\calM, x) \models \phi $
-            \item $ (\calM, x) \models (\exists v_n) \phi $, wenn ein $ a \in M $ mit $ (\calM, x(n/a)) \models \phi $ existiert
+            \item $ (\calM, x) \models \varphi \land \psi $, wenn $ (\calM, x) \models \varphi $ und $ (\calM, x) \models \psi $
+            \item $ (\calM, x) \models \neg \varphi $, wenn nicht $ (\calM, x) \models \varphi $
+            \item $ (\calM, x) \models (\exists v_n) \varphi $, wenn ein $ a \in M $ mit $ (\calM, x(n/a)) \models \varphi $ existiert
         \end{itemize}
     \end{dfn}
+
+    \begin{bem}
+        Sei $ \calM = \struc{M}{\calM}{} $ eine $ \sigma $-Struktur, $ x \in M^{\mathbb{N}} $ eine Bewertung, $\varphi, \psi \in L $.
+        \begin{enumerate}
+            \item $ (\calM, x) \models \varphi \lor \psi \Leftrightarrow (\calM, x) \models \varphi $ oder $ (\calM, x) \models \psi $\\
+            $ (\calM, x) \models \varphi \rightarrow \psi \Leftrightarrow $ wenn $ (\calM, x) \models \varphi $, dann $ ( \calM, x) \models \psi $
+            \item $ (\calM, x) \models (\forall v_n) \varphi \Leftrightarrow $ für alle $ a \in M gilt: \big(\calM, x(n/a)\big) \models \varphi $
+            \item Sei $ y \in M^{\mathbb{N}} $ so, dass für alle freien Variablen $ v_n $ in $ \varphi $ gilt: $ x_n = y_n $.
+            Dann: $ (\calM, x) \models \varphi \Leftrightarrow (\calM, y ) \models \varphi $. \label{itm:freie-variablen-gleich}
+        \end{enumerate}
+    \end{bem}
+
+    \begin{proof}
+        ~\par
+        \begin{enumerate}
+            \item Übungsaufgabe
+            \item \begin{align*}
+                (\calM, x) \models (\forall v_n) \varphi & \Leftrightarrow (\calM, x) \models \neg (\exists v_n) \neg \varphi \\
+                & \Leftrightarrow \text{nicht: } (\calM, x) \models (\exists v_n) \neg \varphi \\
+                & \Leftrightarrow \text{nicht ex. } a \in M: \big(\calM, x(n/a)\big) \models \neg \varphi \\
+                & \Leftrightarrow \text{nicht ex. } a \in M: \text{nicht: } \big(\calM, x(n/a)\big) \models \varphi \\
+                & \Leftrightarrow \text{für alle } a \in M: \big(\calM, x(n/a)\big) \models \varphi
+            \end{align*}
+            \item Übungsaufgabe; Hinweis: Per Induktion über Formelaufbau.
+            \begin{enumerate}
+                \item $ \forall t: t^{(\calM, x)} = t^{(\calM, y)} $ \label{itm:aussage-1}
+                \item Induktion: $ \varphi = (t_1 = t_2) $, $ \varphi = R(t_1, ..., t_n) $ mit \ref{itm:aussage-1}, $ \varphi = \psi \land \xi $, $ \varphi = \neg \psi $, $ \varphi = (\exists v_n) \psi $
+            \end{enumerate}
+        \end{enumerate}
+    \end{proof}
+
+    Wegen Bemerkung \ref{itm:freie-variablen-gleich} hängt die Gültigkeit von $ (\calM, x) \models \varphi $ \underline{nur} von den ersten $ x_1, ..., x_n $ ab, die alle freien Variablen $ v_i $ in $ \varphi $ überdecken.
+    Daher: Wir schreiben $ \calM \models \varphi[x_1, ..., x_n] $ falls $ (\calM, x) \models \varphi $ und $ n \geq max\{i \mid v_i \text{ frei in } \varphi\} $
+
+    Ist $ \phi $ ein Satz, dann gilt:
+    \begin{align*}
+        \calM \models \varphi & :\Leftrightarrow \exists x \in M^{\mathbb{N}}: (\calM, x) \models \phi \\
+        & \Leftrightarrow \forall x \in M^\mathbb{N}: (\calM, x) \models \varphi \\
+        & \Leftrightarrow: \varphi \text{ ist wahr in } \calM
+    \end{align*}
+
+    $ \phi $ \underline{universell richtig} gdw. $ \forall \sigma$-Strukturen $ \calM: \calM \models \varphi $.
+    \begin{exm}
+        $ (\forall x) x = x $ bzw. $ (\forall v_n) v_n = v_n $
+    \end{exm}
+
+    Zwei $ L $-Strukturen $ \calM, \calN $ heißen \underline{elementar äquivalent}, falls
+    \begin{align}
+        & \forall \text{ Sätze } \sigma: \calM \models \sigma \Leftrightarrow \calN \models \sigma \label{eq:elem-equiv-1} \\
+        \Leftrightarrow & \forall \text{ Sätze } \sigma: \calM \models \sigma \Rightarrow \calN \models \sigma \label{eq:elem-equiv-2}
+    \end{align}
+
+    \begin{proof}
+        Es gelte \eqref{eq:elem-equiv-2}, wir zeigen \eqref{eq:elem-equiv-1}.
+        Sei $ \sigma $ beliebiger Satz.
+        $ \calM \models \sigma \Rightarrow \calN \models \sigma $
+        gilt trivialerweise nach Vorbedingung \eqref{eq:elem-equiv-2}.
+
+        Es bleibt zu zeigen, dass $ \calN \models \sigma \Rightarrow \calM \models \sigma $.
+        Es gelte $ \calN \models \sigma $.
+        Angenommen, es gilt nicht: $ \calM \models \sigma $, dann muss gelten, dass $ \calM \models \neg \sigma $.
+        Offensichtlich ist $ \neg \sigma $ ein Satz.
+        \eqref{eq:elem-equiv-2} $ \Rightarrow \calN \models \neg \sigma $, also nicht $ \calN \models \sigma $. Widerspruch.
+    \end{proof}
+
+    Sei $ \calK $ eine Klasse von $ L $-Strukturen einer festen Sprache $ L $.
+    eine Eigenschaft $ P$ dieser Struktur aus $ \calK $ heißt
+    \begin{itemize}
+        \item \underline{Eigenschaft 1. Stufe} (first order property) \underline{in $ \calK $}, falls es einen Satz $ \sigma $ gibt mit:
+        \begin{equation*}
+            \forall \calA \in \calK : \calA \text{ hat Eigenschaft } P \Leftrightarrow \calA \models \sigma
+        \end{equation*}
+        \item \underline{allgemeine Eigenschaft 1. Stufe} (general first order property) \underline{in $ \calK $}, falls es eine Menge $ \Sigma $ von Sätzen gibt mit:
+        \begin{equation*}
+            \forall \calA \in \calK : \calA \text{ hat Eigenschaft } P \Leftrightarrow \calA \models \Sigma
+        \end{equation*}
+        Wir schreiben $ \calA \models \Sigma :\Leftrightarrow \forall \sigma \in \Sigma: \calA \models \sigma $.
+    \end{itemize}
+    Ist $ P $ eine Eigenschaft 1. Stufe für die Klasse aller $ L $-Strukturen, so heißt $ P $ auch \underline{endlich axiomatisierbar}.
+
+    \begin{exm}
+        $ L $ beliebig (d.~h. beliebige Signatur).
+        Für $ n \in \mathbb{N} $ sei
+        \begin{equation*}
+            \exists^{\geq n} := (\exists v_1) ... (\exists v_n) (v_1 \not = v_2 \land ... \land v_1 \not = v_n \land v_2 \not = v_3 \land ... \land v_2 \not = v_n \land ... \land v_{n-1} \not = v_n)
+        \end{equation*}
+        mit $ v_i \not = v_j := \neg (v_i = v_j) $.
+
+        $ \calM \models \exists^{\geq n} \Leftrightarrow | M | \geq n $.
+        Also ist die Eigenschaft, mindestens $ n $ Elemente zu haben, eine Eigenschaft 1. Stufe und endlich axiomatisierbar.
+
+        Ebenso $ \exists!^n = \exists^{\geq n} \land \neg \exists^{\geq(n+1)} $, $ \calM \models \exists!^n \Leftrightarrow |M| = n $.
+
+        Sei $ \Sigma = \{ \exists^{\geq n} \mid n \in \mathbb{N} \} $.
+        $ \calM \models \Sigma \Leftrightarrow M $ unendlich.
+        Die Eigenschaft, unendlich zu sein, ist eine allgemeine Eigenschaft 1. Stufe.
+        Aber: Die Eigenschaft, endlich zu sein, ist keine allgemeine Eigenschaft 1. Stufe.
+    \end{exm}
+
+    \begin{exm}
+        Sei $ R $ ein $ 2 $-stelliges Relationsymbol in der Signatur.
+        \begin{itemize}
+            \item $ \sigma_1 = (\forall v_1) R(v_1, v_2) $ \hfill \textit{(Reflexivität)}
+            \item $ \sigma_2 = (\forall v_1) (\forall v_2) \big(R(v_1, v_2) \land R(v_2, v_1)\big) \rightarrow v_1 = v_2 $ \hfill \textit{(Antisymmetrie)}
+            \item $ \sigma_3 = (\forall v_1) (\forall v_2) (\forall v_3) \big(R(v_1, v_2) \land R(v_2, v_3)\big) \rightarrow R(v_1, v_3) $ \hfill \textit{(Transitivität)}
+        \end{itemize}
+
+        Sei $ \sigma = \sigma_1 \land \sigma_2 \land \sigma_3 $.
+
+        Sei $ \calA = (A, R) \models \sigma \Leftrightarrow R $  ist eine teilweise Ordnung auf $ A $.
+
+        \begin{itemize}
+            \item $ \sigma_4 = (\forall v_1) (\forall v_2) R(v_1, v_2) \lor R(v_2, v_1) $ \hfill \textit{(Linearität)}
+        \end{itemize}
+
+        $ \calA = (A, R) \models \sigma \land \sigma_4 \Leftrightarrow R $ ist eine lineare Ordnung auf $ A $.
+
+        Die Eigenschaft einer binären Relationsstruktur, eine teilweise geordnete Menge zu sein, bzw. linear geordnet zu sein, ist also endlich axiomatisierbar.
+
+        Sei $ \calA = (A, \leq) $ teilweise geordnet.
+        $ \calA $ hat ein größtes Element, falls $ \calA \models \sigma_{gr} $, wobei $ \sigma_{gr} = (\exists y) (\forall x) x \leq y $. \textit{($ x \leq y $ ist Abkürzung für $ \leq(x, y) $)}
+    \end{exm}
 
 \end{document}
