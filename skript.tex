@@ -1,5 +1,6 @@
 \documentclass{article}
 \usepackage{amsmath,amsthm,amssymb}
+\usepackage[framemethod=tikz]{mdframed}
 \usepackage{etoolbox}
 \usepackage[utf8]{inputenc}
 \usepackage[ngerman]{babel}
@@ -18,6 +19,20 @@
 \newtheorem*{anm}{Anmerkung}
 \newtheorem*{bsp}{Beispiel}
 \newtheorem{bem}[dfn]{Bemerkung}
+
+\mdfdefinestyle{standard}{
+    skipabove=5pt,
+    skipbelow=5pt,
+    innerbottommargin=12pt,
+    leftmargin=5pt,
+    rightmargin=5pt,
+    linewidth=1pt,
+    roundcorner=4pt
+}
+\surroundwithmdframed[style=standard]{dfn}
+\surroundwithmdframed[style=standard]{konstr}
+\surroundwithmdframed[style=standard]{lem}
+\surroundwithmdframed[style=standard]{satz}
 
 \newcommand{\calA}{\mathcal{A}}
 \newcommand{\calC}{\mathcal{C}}
