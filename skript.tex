@@ -8,20 +8,16 @@
 \author{Felix Linker}
 \date{SS2018}
 
-\newtheorem*{bem}{Bemerkung}
 \theoremstyle{definition}
-\newtheorem{dfn}{Definition}
-\newtheorem*{exm}{Beispiel}
+\newtheorem{dfn}{Definition}[section]
+\newtheorem{konstr}[dfn]{Konstruktion}
+\newtheorem{lem}[dfn]{Lemma}
+\newtheorem{satz}[dfn]{Satz}
 
-% make definition numbering to prefix section number
-\makeatletter
-\@addtoreset{dfn}{section}
-\newcommand{\dfnprefix}{}
-\let\thedfnsaved\thedfn
-\renewcommand{\thedfn}{\dfnprefix\thedfnsaved}
-\let\sectionsaved\section
-\patchcmd{\@startsection}{\par}{\renewcommand{\dfnprefix}{\csname the#1\endcsname.}}{}{}
-\makeatother
+\theoremstyle{plain}
+\newtheorem*{anm}{Anmerkung}
+\newtheorem*{bsp}{Beispiel}
+\newtheorem{bem}[dfn]{Bemerkung}
 
 \newcommand{\calA}{\mathcal{A}}
 \newcommand{\calC}{\mathcal{C}}
@@ -133,11 +129,11 @@
         Umgekehrt heißt $ \calM $ \underline{Expansion} von $ \calN := \calM \vert_{sigma_0} $ auf $ \sigma_1 $, d.~h. $ \calM $ entsteht aus $ \calN $ durch Hinzunahme geeigneter (bzgl. $ \sigma_1 $) Konstanten/Funktionen/Relationen.
     \end{dfn}
 
-    \begin{exm}
+    \begin{bsp}
         Betrachten wir die Gruppe $ \calG = (G, 1^\calG, \circ^\calG) $.
         $ \calG $ ist ein Redukt von $ (G, 1^\calG, \circ^\calG, \circ^{-1\calG}) $.
         Von $ \calR = (R, 0, 1, +, \cdot) $ ist $ (R, 0, +) $ ein Redukt.
-    \end{exm}
+    \end{bsp}
 
     Eine Signatur $ \sigma = \sign{} $ heißt \underline{konstantenlos}, falls $ \calC = \emptyset $ und \underline{(rein) relational}, falls $ \calC = \calF = \emptyset $.
 
@@ -218,7 +214,7 @@
         \end{itemize}
     \end{dfn}
 
-    \begin{bem}
+    \begin{anm}
         Sei $ \calM = \struc{M}{\calM}{} $ eine $ \sigma $-Struktur, $ x \in M^{\mathbb{N}} $ eine Bewertung, $\varphi, \psi \in L $.
         \begin{enumerate}
             \item $ (\calM, x) \models \varphi \lor \psi \Leftrightarrow (\calM, x) \models \varphi $ oder $ (\calM, x) \models \psi $\\
@@ -227,7 +223,7 @@
             \item Sei $ y \in M^{\mathbb{N}} $ so, dass für alle freien Variablen $ v_n $ in $ \varphi $ gilt: $ x_n = y_n $.
             Dann: $ (\calM, x) \models \varphi \Leftrightarrow (\calM, y ) \models \varphi $. \label{itm:freie-variablen-gleich}
         \end{enumerate}
-    \end{bem}
+    \end{anm}
 
     \begin{proof}
         ~\par
@@ -259,9 +255,9 @@
     \end{align*}
 
     $ \phi $ \underline{universell richtig} gdw. $ \forall \sigma$-Strukturen $ \calM: \calM \models \varphi $.
-    \begin{exm}
+    \begin{bsp}
         $ (\forall x) x = x $ bzw. $ (\forall v_n) v_n = v_n $
-    \end{exm}
+    \end{bsp}
 
     Zwei $ L $-Strukturen $ \calM, \calN $ heißen \underline{elementar äquivalent}, falls
     \begin{align}
@@ -297,7 +293,7 @@
     \end{itemize}
     Ist $ P $ eine Eigenschaft 1. Stufe für die Klasse aller $ L $-Strukturen, so heißt $ P $ auch \underline{endlich axiomatisierbar}.
 
-    \begin{exm}
+    \begin{bsp}
         $ L $ beliebig (d.~h. beliebige Signatur).
         Für $ n \in \mathbb{N} $ sei
         \begin{equation*}
@@ -314,9 +310,9 @@
         $ \calM \models \Sigma \Leftrightarrow M $ unendlich.
         Die Eigenschaft, unendlich zu sein, ist eine allgemeine Eigenschaft 1. Stufe.
         Aber: Die Eigenschaft, endlich zu sein, ist keine allgemeine Eigenschaft 1. Stufe.
-    \end{exm}
+    \end{bsp}
 
-    \begin{exm}
+    \begin{bsp}
         Sei $ R $ ein $ 2 $-stelliges Relationsymbol in der Signatur.
         \begin{itemize}
             \item $ \sigma_1 = (\forall v_1) R(v_1, v_2) $ \hfill \textit{(Reflexivität)}
@@ -338,6 +334,6 @@
 
         Sei $ \calA = (A, \leq) $ teilweise geordnet.
         $ \calA $ hat ein größtes Element, falls $ \calA \models \sigma_{gr} $, wobei $ \sigma_{gr} = (\exists y) (\forall x) x \leq y $. \textit{($ x \leq y $ ist Abkürzung für $ \leq(x, y) $)}
-    \end{exm}
+    \end{bsp}
 
 \end{document}
