@@ -90,7 +90,7 @@
     $ c^\calM $ heißt auch \underline{Interpretation} von $ c $ in $ \calM $; Analoges gilt für $ f^\calM, R^\calM $.
 
     \begin{dfn}
-        Seien $ \calM $, $ \calN $ zwei $ \sigma $-Strukturen.
+        Seien $ \calM = \struc{M}{\calM}{} $, $ \calN = \struc{N}{\calN}{} $ zwei $ \sigma $-Strukturen.
         Ein Homomorphismus von $ \calM $ nach $ \calN $ ist eine Abbilung $ h : M \rightarrow N $ mit:
         \begin{enumerate}
             \item $ h(c^\calM) = c^\calN $ für allen Konstantensymbole $ c \in \calC $
@@ -125,7 +125,7 @@
     Die Struktur $ Aut(\calM) = \big( \{ h : \calM \rightarrow \calM \mid h \text{ Automorphismus} \}, \circ \big) $ mit Komposition $ \circ $ ist eine Gruppe.
 
     \begin{dfn}
-        Seien $ \calM $, $ \calN $ $\sigma $-Strukturen.
+        Seien $ \calM = \struc{M}{\calN}{} $, $ \calN = \struc{N}{\calN}{} $ $\sigma $-Strukturen.
         $ \calN $ heißt \underline{Teil-/Unter-/Substruktur} von $ \calM $, falls:
         \begin{enumerate}
             \item $ N \subseteq M $
@@ -142,9 +142,9 @@
         Seien $ \sigma_0 = \sign{0} $, $ \sigma_1 = \sign{1} $ zwei Signaturen.
         Wir definieren $ \sigma_0 \subseteq \sigma_1 $, d.~h. $ \calC_0 \subseteq \calC_1 $, $ \calF_0 \subseteq \calF_1 $, $ \calR_0 \subseteq \calR_1 $ und $ \sigma'_0 = \sigma'_1 \vert_{\calF_0 \cup \calR_0} $ .
 
-        Sei $ \calM $ eine $ \sigma_1 $-Struktur.
-        Dann heißt $ \calM \vert_{\sigma_0} = \struc{M}{\calM}{} $ das \underline{Redukt} von $ \calM $ auf $ \sigma_0 $ od. auch $ \sigma_0 $-Redukt.
-        Umgekehrt heißt $ \calM $ \underline{Expansion} von $ \calN := \calM \vert_{sigma_0} $ auf $ \sigma_1 $, d.~h. $ \calM $ entsteht aus $ \calN $ durch Hinzunahme geeigneter (bzgl. $ \sigma_1 $) Konstanten/Funktionen/Relationen.
+        Sei $ \calM = \struc{M}{\calM}{1} $ eine $ \sigma_1 $-Struktur.
+        Dann heißt $ \calM \vert_{\sigma_0} = \struc{M}{\calM}{0} $ das \underline{Redukt} von $ \calM $ auf $ \sigma_0 $ od. auch $ \sigma_0 $-Redukt.
+        Umgekehrt heißt $ \calM $ \underline{Expansion} von $ \calN := \calM \vert_{\sigma_0} $ auf $ \sigma_1 $, d.~h. $ \calM $ entsteht aus $ \calN $ durch Hinzunahme geeigneter (bzgl. $ \sigma_1 $) Konstanten/Funktionen/Relationen.
     \end{dfn}
 
     \begin{bsp}
