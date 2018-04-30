@@ -264,14 +264,14 @@
     Wegen Bemerkung \ref{itm:freie-variablen-gleich} hängt die Gültigkeit von $ (\calM, x) \models \varphi $ \underline{nur} von den ersten $ x_1, ..., x_n $ ab, die alle freien Variablen $ v_i $ in $ \varphi $ überdecken.
     Daher: Wir schreiben $ \calM \models \varphi[x_1, ..., x_n] $ falls $ (\calM, x) \models \varphi $ und $ n \geq max\{i \mid v_i \text{ frei in } \varphi\} $
 
-    Ist $ \phi $ ein Satz, dann gilt:
+    Ist $ \varphi $ ein Satz, dann gilt:
     \begin{align*}
-        \calM \models \varphi & :\Leftrightarrow \exists x \in M^{\mathbb{N}}: (\calM, x) \models \phi \\
+        \calM \models \varphi & :\Leftrightarrow \exists x \in M^{\mathbb{N}}: (\calM, x) \models \varphi \\
         & \Leftrightarrow \forall x \in M^\mathbb{N}: (\calM, x) \models \varphi \\
         & \Leftrightarrow: \varphi \text{ ist wahr in } \calM
     \end{align*}
 
-    $ \phi $ \underline{universell richtig} gdw. $ \forall \sigma$-Strukturen $ \calM: \calM \models \varphi $.
+    $ \varphi $ \underline{universell richtig} gdw. $ \forall \sigma$-Strukturen $ \calM: \calM \models \varphi $.
     \begin{bsp}
         $ (\forall x) x = x $ bzw. $ (\forall v_n) v_n = v_n $
     \end{bsp}
