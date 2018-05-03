@@ -35,17 +35,10 @@
 \surroundwithmdframed[style=standard]{lem}
 \surroundwithmdframed[style=standard]{satz}
 
-\newcommand{\calA}{\mathcal{A}}
-\newcommand{\calC}{\mathcal{C}}
-\newcommand{\calF}{\mathcal{F}}
-\newcommand{\calG}{\mathcal{G}}
-\newcommand{\calK}{\mathcal{K}}
-\newcommand{\calM}{\mathcal{M}}
-\newcommand{\calN}{\mathcal{N}}
-\newcommand{\calR}{\mathcal{R}}
+\newcommand{\m}[1]{\mathcal{#1}}
 
-\newcommand{\sign}[1]{(\calC_{#1}, \calF_{#1}, \calR_{#1}, \sigma'_{#1})}
-\newcommand{\struc}[3]{\big(#1, (c^{#2})_{c \in \calC_{#3}}, (f^{#2})_{f \in \calF_{#3}}, (R^{#2})_{R \in \calR_{#3}}\big)}
+\newcommand{\sign}[1]{(\m{C}_{#1}, \m{F}_{#1}, \m{R}_{#1}, \sigma'_{#1})}
+\newcommand{\struc}[3]{\big(#1, (c^{#2})_{c \in \m{C}_{#3}}, (f^{#2})_{f \in \m{F}_{#3}}, (R^{#2})_{R \in \m{R}_{#3}}\big)}
 
 \sloppy
 
@@ -69,91 +62,91 @@
         \begin{equation}
             \sigma = \sign{}
         \end{equation}
-        mit einer Menge von Konstantensymbolen $ \calC $, einer Menge von Funktionssymbolen $ \calF $, einer Menge von Relationensymbolen $ \calR $, einer Stelligkeitsfunktion $ \sigma' : \calF \cup \calR \rightarrow \mathbb{N} $.
+        mit einer Menge von Konstantensymbolen $ \m{C} $, einer Menge von Funktionssymbolen $ \m{F} $, einer Menge von Relationensymbolen $ \m{R} $, einer Stelligkeitsfunktion $ \sigma' : \m{F} \cup \m{R} \rightarrow \mathbb{N} $.
     \end{dfn}
 
     \begin{dfn}
-        Eine \underline{Struktur} $ \calM $ ist ein Quadrupel
+        Eine \underline{Struktur} $ \m{M} $ ist ein Quadrupel
         \begin{equation}
-            \calM = \struc{M}{\calM}{}
+            \m{M} = \struc{M}{\m{M}}{}
         \end{equation}
-        mit einer Menge $ M $ (oftmals $ M \neq \emptyset $), Indexmengen $ \calC, \calF, \calR $.
-        Wobei gilt $ c^\calM \in M $ für $ c \in \calC $, $ f^\calM : M^{n_f} \rightarrow M $, $ n_f \in \mathbb{N} $ für $ f \in \calF $, $ R^\calM \subseteq M^{m_R} $ für $ R \in \calR $.
+        mit einer Menge $ M $ (oftmals $ M \neq \emptyset $), Indexmengen $ \m{C}, \m{F}, \m{R} $.
+        Wobei gilt $ c^\m{M} \in M $ für $ c \in \m{C} $, $ f^\m{M} : M^{n_f} \rightarrow M $, $ n_f \in \mathbb{N} $ für $ f \in \m{F} $, $ R^\m{M} \subseteq M^{m_R} $ für $ R \in \m{R} $.
     \end{dfn}
 
-    $ \calM $ heißt \underline{$ \sigma $-Struktur} bzw. $ \calM $ und $ \sigma $ \underline{passen zueinander}, falls:
+    $ \m{M} $ heißt \underline{$ \sigma $-Struktur} bzw. $ \m{M} $ und $ \sigma $ \underline{passen zueinander}, falls:
     \begin{enumerate}
-        \item $ n_f = \sigma'(f) $ für $ f \in \calF $
-        \item $ m_R = \sigma'(R) $ für $ R \in \calR $
+        \item $ n_f = \sigma'(f) $ für $ f \in \m{F} $
+        \item $ m_R = \sigma'(R) $ für $ R \in \m{R} $
     \end{enumerate}
 
-    $ c^\calM $ heißt auch \underline{Interpretation} von $ c $ in $ \calM $; Analoges gilt für $ f^\calM, R^\calM $.
+    $ c^\m{M} $ heißt auch \underline{Interpretation} von $ c $ in $ \m{M} $; Analoges gilt für $ f^\m{M}, R^\m{M} $.
 
     \begin{dfn}
-        Seien $ \calM = \struc{M}{\calM}{} $, $ \calN = \struc{N}{\calN}{} $ zwei $ \sigma $-Strukturen.
-        Ein Homomorphismus von $ \calM $ nach $ \calN $ ist eine Abbilung $ h : M \rightarrow N $ mit:
+        Seien $ \m{M} = \struc{M}{\m{M}}{} $, $ \m{N} = \struc{N}{\m{N}}{} $ zwei $ \sigma $-Strukturen.
+        Ein Homomorphismus von $ \m{M} $ nach $ \m{N} $ ist eine Abbilung $ h : M \rightarrow N $ mit:
         \begin{enumerate}
-            \item $ h(c^\calM) = c^\calN $ für allen Konstantensymbole $ c \in \calC $
-            \item $ h\big(f^\calM(a_1, ..., a_n)\big) = f^\calN\big(h(a_1), ..., h(a_n)\big) $ für alle Funktionssymbole $ f \in \calF $ mit $ n = \sigma'(f) $, $ a_1, ..., a_n \in M $.
-            \item \label{itm:homomorphismus-3} $ (a_1, ..., a_n) \in R^\calM \Rightarrow \big(h(a_1), ..., h(a_n)) \in R^\calN $ für alle Relationensymbole $ R \in \calR $, $ n = \sigma'(R) $, $ a_1, ..., a_n in M $.
+            \item $ h(c^\m{M}) = c^\m{N} $ für allen Konstantensymbole $ c \in \m{C} $
+            \item $ h\big(f^\m{M}(a_1, ..., a_n)\big) = f^\m{N}\big(h(a_1), ..., h(a_n)\big) $ für alle Funktionssymbole $ f \in \m{F} $ mit $ n = \sigma'(f) $, $ a_1, ..., a_n \in M $.
+            \item \label{itm:homomorphismus-3} $ (a_1, ..., a_n) \in R^\m{M} \Rightarrow \big(h(a_1), ..., h(a_n)) \in R^\m{N} $ für alle Relationensymbole $ R \in \m{R} $, $ n = \sigma'(R) $, $ a_1, ..., a_n in M $.
         \end{enumerate}
     \end{dfn}
 
-    Für einen Homomorphismus $ h $ von $ \calM $ nach $ \calN $ schreibt man auch $ h : \calM \rightarrow \calN $.
+    Für einen Homomorphismus $ h $ von $ \m{M} $ nach $ \m{N} $ schreibt man auch $ h : \m{M} \rightarrow \m{N} $.
 
-    $ h $ heißt \underline{stark}, wenn für alle $ R \in \calR $ mit $ n = \sigma'(R) $, $ b_1, ..., b_n \in h(M) \subseteq N $ mit $ (b_1, ..., b_n) \in R^\calN $ gilt:
+    $ h $ heißt \underline{stark}, wenn für alle $ R \in \m{R} $ mit $ n = \sigma'(R) $, $ b_1, ..., b_n \in h(M) \subseteq N $ mit $ (b_1, ..., b_n) \in R^\m{N} $ gilt:
     \begin{equation}
         \label{eq:staerke}
-        \exists a_1, ..., a_n \in M : (a_1, ..., a_n) \in R^\calM, h(a_i) = b_i, 1 \leq i \leq n
+        \exists a_1, ..., a_n \in M : (a_1, ..., a_n) \in R^\m{M}, h(a_i) = b_i, 1 \leq i \leq n
     \end{equation}
 
     $ h $ heißt \underline{Einbettung}, falls $ h $ stark und injektiv ist.
-    Ist $ h $ injektiv, dann lassen sich Bedingung \ref{itm:homomorphismus-3} und Gleichung \eqref{eq:staerke} folgendermaßen zusammenfassen; für alle $ R \in \calR $, $ n = \sigma'(R) $, $ a_1, ..., a_n \in M $:
+    Ist $ h $ injektiv, dann lassen sich Bedingung \ref{itm:homomorphismus-3} und Gleichung \eqref{eq:staerke} folgendermaßen zusammenfassen; für alle $ R \in \m{R} $, $ n = \sigma'(R) $, $ a_1, ..., a_n \in M $:
     \begin{equation}
-        (a_1, ..., a_n) \in R^\calM \Leftrightarrow \big(h(a_1), ..., h(a_n)\big) \in R^\calN
+        (a_1, ..., a_n) \in R^\m{M} \Leftrightarrow \big(h(a_1), ..., h(a_n)\big) \in R^\m{N}
     \end{equation}
 
     $ h $ heißt Isomorphimus, wenn $ h $ eine surjektive Einbettung ist.
-    Man schreibt $ \calM \cong \calN $, wenn ein Isomorphimus $ h : \calM \rightarrow \calN $ existiert.
-    Sind $ h : \calM \rightarrow \calN $, $ g : \calN \rightarrow \calK $ Isomorphismen, dann sind auch folgende Funktionen ein Isomorphimus:
+    Man schreibt $ \m{M} \cong \m{N} $, wenn ein Isomorphimus $ h : \m{M} \rightarrow \m{N} $ existiert.
+    Sind $ h : \m{M} \rightarrow \m{N} $, $ g : \m{N} \rightarrow \m{K} $ Isomorphismen, dann sind auch folgende Funktionen ein Isomorphimus:
     \begin{itemize}
         \item $ h^{-1} $
-        \item $ g \circ h : \calM \rightarrow \calK $
+        \item $ g \circ h : \m{M} \rightarrow \m{K} $
     \end{itemize}
 
-    $ h : \calM \Rightarrow \calM $ heißt \underline{Automorphismus von $ \calM $}, wenn $ h $ ein Isomorphimus ist.
-    Die Struktur $ Aut(\calM) = \big( \{ h : \calM \rightarrow \calM \mid h \text{ Automorphismus} \}, \circ \big) $ mit Komposition $ \circ $ ist eine Gruppe.
+    $ h : \m{M} \Rightarrow \m{M} $ heißt \underline{Automorphismus von $ \m{M} $}, wenn $ h $ ein Isomorphimus ist.
+    Die Struktur $ Aut(\m{M}) = \big( \{ h : \m{M} \rightarrow \m{M} \mid h \text{ Automorphismus} \}, \circ \big) $ mit Komposition $ \circ $ ist eine Gruppe.
 
     \begin{dfn}
-        Seien $ \calM = \struc{M}{\calN}{} $, $ \calN = \struc{N}{\calN}{} $ $\sigma $-Strukturen.
-        $ \calN $ heißt \underline{Teil-/Unter-/Substruktur} von $ \calM $, falls:
+        Seien $ \m{M} = \struc{M}{\m{N}}{} $, $ \m{N} = \struc{N}{\m{N}}{} $ $\sigma $-Strukturen.
+        $ \m{N} $ heißt \underline{Teil-/Unter-/Substruktur} von $ \m{M} $, falls:
         \begin{enumerate}
             \item $ N \subseteq M $
-            \item $ c^\calN = c^\calM $ für $ c \in \calC $
-            \item $ f^\calN(\bar{a}) = f^\calM(\bar{a}) $ für $ f \in \calF $, $ \bar{a} \in N^{\sigma'(f)} $
-            \item $ \bar{a} \in R^\calN \Leftrightarrow \bar{a} \in R^\calM $, d.~h. $ R^\calN = R^\calM \cap N^{\sigma'(R)} $ für $ \bar{a} \in N^{\sigma'(R)} $
+            \item $ c^\m{N} = c^\m{M} $ für $ c \in \m{C} $
+            \item $ f^\m{N}(\bar{a}) = f^\m{M}(\bar{a}) $ für $ f \in \m{F} $, $ \bar{a} \in N^{\sigma'(f)} $
+            \item $ \bar{a} \in R^\m{N} \Leftrightarrow \bar{a} \in R^\m{M} $, d.~h. $ R^\m{N} = R^\m{M} \cap N^{\sigma'(R)} $ für $ \bar{a} \in N^{\sigma'(R)} $
         \end{enumerate}
     \end{dfn}
 
-    Wenn $ \calN $ eine Teilstruktur von $ \calM $ ist, schreibt man auch $ \calN \subseteq \calM $.
-    $ \calM $ wird dann auch \underline{Ober- oder Erweiterungsstruktur von $ \calN $} genannt.
+    Wenn $ \m{N} $ eine Teilstruktur von $ \m{M} $ ist, schreibt man auch $ \m{N} \subseteq \m{M} $.
+    $ \m{M} $ wird dann auch \underline{Ober- oder Erweiterungsstruktur von $ \m{N} $} genannt.
 
     \begin{dfn}
         Seien $ \sigma_0 = \sign{0} $, $ \sigma_1 = \sign{1} $ zwei Signaturen.
-        Wir definieren $ \sigma_0 \subseteq \sigma_1 $, d.~h. $ \calC_0 \subseteq \calC_1 $, $ \calF_0 \subseteq \calF_1 $, $ \calR_0 \subseteq \calR_1 $ und $ \sigma'_0 = \sigma'_1 \vert_{\calF_0 \cup \calR_0} $ .
+        Wir definieren $ \sigma_0 \subseteq \sigma_1 $, d.~h. $ \m{C}_0 \subseteq \m{C}_1 $, $ \m{F}_0 \subseteq \m{F}_1 $, $ \m{R}_0 \subseteq \m{R}_1 $ und $ \sigma'_0 = \sigma'_1 \vert_{\m{F}_0 \cup \m{R}_0} $ .
 
-        Sei $ \calM = \struc{M}{\calM}{1} $ eine $ \sigma_1 $-Struktur.
-        Dann heißt $ \calM \vert_{\sigma_0} = \struc{M}{\calM}{0} $ das \underline{Redukt} von $ \calM $ auf $ \sigma_0 $ od. auch $ \sigma_0 $-Redukt.
-        Umgekehrt heißt $ \calM $ \underline{Expansion} von $ \calN := \calM \vert_{\sigma_0} $ auf $ \sigma_1 $, d.~h. $ \calM $ entsteht aus $ \calN $ durch Hinzunahme geeigneter (bzgl. $ \sigma_1 $) Konstanten/Funktionen/Relationen.
+        Sei $ \m{M} = \struc{M}{\m{M}}{1} $ eine $ \sigma_1 $-Struktur.
+        Dann heißt $ \m{M} \vert_{\sigma_0} = \struc{M}{\m{M}}{0} $ das \underline{Redukt} von $ \m{M} $ auf $ \sigma_0 $ od. auch $ \sigma_0 $-Redukt.
+        Umgekehrt heißt $ \m{M} $ \underline{Expansion} von $ \m{N} := \m{M} \vert_{\sigma_0} $ auf $ \sigma_1 $, d.~h. $ \m{M} $ entsteht aus $ \m{N} $ durch Hinzunahme geeigneter (bzgl. $ \sigma_1 $) Konstanten/Funktionen/Relationen.
     \end{dfn}
 
     \begin{bsp}
-        Betrachten wir die Gruppe $ \calG = (G, 1^\calG, \circ^\calG) $.
-        $ \calG $ ist ein Redukt von $ (G, 1^\calG, \circ^\calG, \circ^{-1\calG}) $.
-        Von $ \calR = (R, 0, 1, +, \cdot) $ ist $ (R, 0, +) $ ein Redukt.
+        Betrachten wir die Gruppe $ \m{G} = (G, 1^\m{G}, \circ^\m{G}) $.
+        $ \m{G} $ ist ein Redukt von $ (G, 1^\m{G}, \circ^\m{G}, \circ^{-1\m{G}}) $.
+        Von $ \m{R} = (R, 0, 1, +, \cdot) $ ist $ (R, 0, +) $ ein Redukt.
     \end{bsp}
 
-    Eine Signatur $ \sigma = \sign{} $ heißt \underline{konstantenlos}, falls $ \calC = \emptyset $ und \underline{(rein) relational}, falls $ \calC = \calF = \emptyset $.
+    Eine Signatur $ \sigma = \sign{} $ heißt \underline{konstantenlos}, falls $ \m{C} = \emptyset $ und \underline{(rein) relational}, falls $ \m{C} = \m{F} = \emptyset $.
 
     \section{Sprachen und Formeln}
 
@@ -163,7 +156,7 @@
     \underline{Grundsymbole} der Sprache $ L = L(\sigma) $ sind:
     \begin{enumerate}
         \item abzählbar viele Variablen $ v_n $, $ n \in \mathbb{N} $
-        \item die Symbole von $ \sigma $ auf $ \calC \cup \calF \cup \calR $ (nichtlogische Symbole)
+        \item die Symbole von $ \sigma $ auf $ \m{C} \cup \m{F} \cup \m{R} $ (nichtlogische Symbole)
         \item Logisch Zeichen: $ \neg, \land, = $
         \item Quantor $ \exists $
         \item Klammersymbole $ ( $ und $ ) $
@@ -172,14 +165,14 @@
     Die Menge der \underline{Terme} von $ \sigma $ oder $ L(\sigma) $ ist die kleinste Menge für die gilt:
     \begin{enumerate}
         \item Alle Variablen $ v_n $, $ n \in \mathbb{N} $ sind ein Term.
-        \item Alle Konstantensymbole $ c \in \calC $ sind ein Term.
-        \item Wenn $ t_1, ..., t_n $ Terme sind, $ f \in \calF $ mit $ \sigma'(f) = n $, dann ist auch $ f(t_1, ..., t_n) $ ein Term.
+        \item Alle Konstantensymbole $ c \in \m{C} $ sind ein Term.
+        \item Wenn $ t_1, ..., t_n $ Terme sind, $ f \in \m{F} $ mit $ \sigma'(f) = n $, dann ist auch $ f(t_1, ..., t_n) $ ein Term.
     \end{enumerate}
 
     Die Menge der \underline{Atomformeln} bzgl. $ \sigma $ ist die kleinste Menge für die gilt:
     \begin{enumerate}
         \item Wenn $ t_1, t_2 $ Terme sind, dann ist $ t_1 = t_2 $ eine Atomformel,
-        \item Wenn $ t_1, ..., t_n $ Terme sind, $ R \in \calR $ mit $ \sigma'(R) = n $, dann ist $ R(t_1, ..., t_n) $ eine Atomformel.
+        \item Wenn $ t_1, ..., t_n $ Terme sind, $ R \in \m{R} $ mit $ \sigma'(R) = n $, dann ist $ R(t_1, ..., t_n) $ eine Atomformel.
     \end{enumerate}
 
     Die Menge der \underline{Formeln} bzgl. $\sigma $ ist die kleineste Menge für die gilt:
@@ -206,40 +199,40 @@
 
     Eine Formel $ \varphi $ heißt \underline{Aussage} oder \underline{Satz}, falls $ \varphi $ keine freien Variablen enthält.
 
-    Nun sei $ \calM = \struc{M}{\calM}{} $ eine $ \sigma $-Struktur.
-    Wir wollen die Gültigkeit von Formeln $ \varphi $ in $ \calM $ induktiv definieren.
+    Nun sei $ \m{M} = \struc{M}{\m{M}}{} $ eine $ \sigma $-Struktur.
+    Wir wollen die Gültigkeit von Formeln $ \varphi $ in $ \m{M} $ induktiv definieren.
     Jedes Tupel $ x = (x_i)_{i \in \mathbb{N}} $ mit $ x_i \in M $ ($ x \in M^{\mathbb{N}} $) heißt eine Bewertung der Variablen $ v_i $, $ i \in \mathbb{N} $ von $ L $.
     Ist $ n \in \mathbb{N} $ und $ a \in M $, so sei $ x(n/a) := (x_1, ..., x_{n-1}, a, x_{n+1}, ...) $ die \underline{Aktualisierung} od. \underline{Update} von $ x $ an der Stelle $ n $ durch $ a $.
 
     \begin{dfn}
-        Sei $ \calM = \struc{M}{\calM}{} $ eine $ \sigma $-Struktur, $ x \in M^{\mathbb{N}} $.
-        Der \underline{Wert} eines Terms $ t $ in $ (\calM, x) $ sei:
+        Sei $ \m{M} = \struc{M}{\m{M}}{} $ eine $ \sigma $-Struktur, $ x \in M^{\mathbb{N}} $.
+        Der \underline{Wert} eines Terms $ t $ in $ (\m{M}, x) $ sei:
         \begin{enumerate}
-            \item $ t^{(\calM, x)} := x_n $, falls $ t = v_n $ Variable
-            \item $ t^{(\calM, x)} := c^\calM $, falls $ t = c $ Konstantensymbol
-            \item $ t^{(\calM, x)} := f^\calM(t_1^{(\calM, x)}, ..., t_n^{(\calM, x)}) $, falls $ t = f(t_1, ..., t_n) $ mit Funktionssymbol $ f \in \calF $, $ \sigma'(f) = n $ und Termen $ t_1, ..., t_n $
+            \item $ t^{(\m{M}, x)} := x_n $, falls $ t = v_n $ Variable
+            \item $ t^{(\m{M}, x)} := c^\m{M} $, falls $ t = c $ Konstantensymbol
+            \item $ t^{(\m{M}, x)} := f^\m{M}(t_1^{(\m{M}, x)}, ..., t_n^{(\m{M}, x)}) $, falls $ t = f(t_1, ..., t_n) $ mit Funktionssymbol $ f \in \m{F} $, $ \sigma'(f) = n $ und Termen $ t_1, ..., t_n $
         \end{enumerate}
     \end{dfn}
 
     \begin{dfn}
-        Wir definieren: $ (\calM, x) $ \underline{erfüllt} die Formel $ \varphi $ oder $ \varphi $ \underline{gilt} in $ (\calM, x) $ (wir schreiben $ (\calM, x) \models \varphi $ od. $ \calM \models \varphi[x] $), wie folgt:
+        Wir definieren: $ (\m{M}, x) $ \underline{erfüllt} die Formel $ \varphi $ oder $ \varphi $ \underline{gilt} in $ (\m{M}, x) $ (wir schreiben $ (\m{M}, x) \models \varphi $ od. $ \m{M} \models \varphi[x] $), wie folgt:
         \begin{itemize}
-            \item $ (\calM, x) \models t_1 = t_2 $, wenn $ t^{(\calM, x)}_1 = t^{(\calM, x)}_2 $
-            \item $ (\calM, x) \models R(t_1, ..., t_n) $, wenn $ (t_1^{(\calM, x)}, ..., t_n^{(\calM, x)}) \in R^\calM $
-            \item $ (\calM, x) \models \varphi \land \psi $, wenn $ (\calM, x) \models \varphi $ und $ (\calM, x) \models \psi $
-            \item $ (\calM, x) \models \neg \varphi $, wenn nicht $ (\calM, x) \models \varphi $
-            \item $ (\calM, x) \models (\exists v_n) \varphi $, wenn ein $ a \in M $ mit $ (\calM, x(n/a)) \models \varphi $ existiert
+            \item $ (\m{M}, x) \models t_1 = t_2 $, wenn $ t^{(\m{M}, x)}_1 = t^{(\m{M}, x)}_2 $
+            \item $ (\m{M}, x) \models R(t_1, ..., t_n) $, wenn $ (t_1^{(\m{M}, x)}, ..., t_n^{(\m{M}, x)}) \in R^\m{M} $
+            \item $ (\m{M}, x) \models \varphi \land \psi $, wenn $ (\m{M}, x) \models \varphi $ und $ (\m{M}, x) \models \psi $
+            \item $ (\m{M}, x) \models \neg \varphi $, wenn nicht $ (\m{M}, x) \models \varphi $
+            \item $ (\m{M}, x) \models (\exists v_n) \varphi $, wenn ein $ a \in M $ mit $ (\m{M}, x(n/a)) \models \varphi $ existiert
         \end{itemize}
     \end{dfn}
 
     \begin{anm}
-        Sei $ \calM = \struc{M}{\calM}{} $ eine $ \sigma $-Struktur, $ x \in M^{\mathbb{N}} $ eine Bewertung, $\varphi, \psi \in L $.
+        Sei $ \m{M} = \struc{M}{\m{M}}{} $ eine $ \sigma $-Struktur, $ x \in M^{\mathbb{N}} $ eine Bewertung, $\varphi, \psi \in L $.
         \begin{enumerate}
-            \item $ (\calM, x) \models \varphi \lor \psi \Leftrightarrow (\calM, x) \models \varphi $ oder $ (\calM, x) \models \psi $\\
-            $ (\calM, x) \models \varphi \rightarrow \psi \Leftrightarrow $ wenn $ (\calM, x) \models \varphi $, dann $ ( \calM, x) \models \psi $
-            \item $ (\calM, x) \models (\forall v_n) \varphi \Leftrightarrow $ für alle $ a \in M gilt: \big(\calM, x(n/a)\big) \models \varphi $
+            \item $ (\m{M}, x) \models \varphi \lor \psi \Leftrightarrow (\m{M}, x) \models \varphi $ oder $ (\m{M}, x) \models \psi $\\
+            $ (\m{M}, x) \models \varphi \rightarrow \psi \Leftrightarrow $ wenn $ (\m{M}, x) \models \varphi $, dann $ ( \m{M}, x) \models \psi $
+            \item $ (\m{M}, x) \models (\forall v_n) \varphi \Leftrightarrow $ für alle $ a \in M gilt: \big(\m{M}, x(n/a)\big) \models \varphi $
             \item Sei $ y \in M^{\mathbb{N}} $ so, dass für alle freien Variablen $ v_n $ in $ \varphi $ gilt: $ x_n = y_n $.
-            Dann: $ (\calM, x) \models \varphi \Leftrightarrow (\calM, y ) \models \varphi $. \label{itm:freie-variablen-gleich}
+            Dann: $ (\m{M}, x) \models \varphi \Leftrightarrow (\m{M}, y ) \models \varphi $. \label{itm:freie-variablen-gleich}
         \end{enumerate}
     \end{anm}
 
@@ -248,66 +241,66 @@
         \begin{enumerate}
             \item Übungsaufgabe
             \item \begin{align*}
-                (\calM, x) \models (\forall v_n) \varphi & \Leftrightarrow (\calM, x) \models \neg (\exists v_n) \neg \varphi \\
-                & \Leftrightarrow \text{nicht: } (\calM, x) \models (\exists v_n) \neg \varphi \\
-                & \Leftrightarrow \text{nicht ex. } a \in M: \big(\calM, x(n/a)\big) \models \neg \varphi \\
-                & \Leftrightarrow \text{nicht ex. } a \in M: \text{nicht: } \big(\calM, x(n/a)\big) \models \varphi \\
-                & \Leftrightarrow \text{für alle } a \in M: \big(\calM, x(n/a)\big) \models \varphi
+                (\m{M}, x) \models (\forall v_n) \varphi & \Leftrightarrow (\m{M}, x) \models \neg (\exists v_n) \neg \varphi \\
+                & \Leftrightarrow \text{nicht: } (\m{M}, x) \models (\exists v_n) \neg \varphi \\
+                & \Leftrightarrow \text{nicht ex. } a \in M: \big(\m{M}, x(n/a)\big) \models \neg \varphi \\
+                & \Leftrightarrow \text{nicht ex. } a \in M: \text{nicht: } \big(\m{M}, x(n/a)\big) \models \varphi \\
+                & \Leftrightarrow \text{für alle } a \in M: \big(\m{M}, x(n/a)\big) \models \varphi
             \end{align*}
             \item Übungsaufgabe; Hinweis: Per Induktion über Formelaufbau.
             \begin{enumerate}
-                \item $ \forall t: t^{(\calM, x)} = t^{(\calM, y)} $ \label{itm:aussage-1}
+                \item $ \forall t: t^{(\m{M}, x)} = t^{(\m{M}, y)} $ \label{itm:aussage-1}
                 \item Induktion: $ \varphi = (t_1 = t_2) $, $ \varphi = R(t_1, ..., t_n) $ mit \ref{itm:aussage-1}, $ \varphi = \psi \land \xi $, $ \varphi = \neg \psi $, $ \varphi = (\exists v_n) \psi $
             \end{enumerate}
         \end{enumerate}
     \end{proof}
 
-    Wegen Bemerkung \ref{itm:freie-variablen-gleich} hängt die Gültigkeit von $ (\calM, x) \models \varphi $ \underline{nur} von den ersten $ x_1, ..., x_n $ ab, die alle freien Variablen $ v_i $ in $ \varphi $ überdecken.
-    Daher: Wir schreiben $ \calM \models \varphi[x_1, ..., x_n] $ falls $ (\calM, x) \models \varphi $ und $ n \geq max\{i \mid v_i \text{ frei in } \varphi\} $
+    Wegen Bemerkung \ref{itm:freie-variablen-gleich} hängt die Gültigkeit von $ (\m{M}, x) \models \varphi $ \underline{nur} von den ersten $ x_1, ..., x_n $ ab, die alle freien Variablen $ v_i $ in $ \varphi $ überdecken.
+    Daher: Wir schreiben $ \m{M} \models \varphi[x_1, ..., x_n] $ falls $ (\m{M}, x) \models \varphi $ und $ n \geq max\{i \mid v_i \text{ frei in } \varphi\} $
 
     Ist $ \varphi $ ein Satz, dann gilt:
     \begin{align*}
-        \calM \models \varphi & :\Leftrightarrow \exists x \in M^{\mathbb{N}}: (\calM, x) \models \varphi \\
-        & \Leftrightarrow \forall x \in M^\mathbb{N}: (\calM, x) \models \varphi \\
-        & \Leftrightarrow: \varphi \text{ ist wahr in } \calM
+        \m{M} \models \varphi & :\Leftrightarrow \exists x \in M^{\mathbb{N}}: (\m{M}, x) \models \varphi \\
+        & \Leftrightarrow \forall x \in M^\mathbb{N}: (\m{M}, x) \models \varphi \\
+        & \Leftrightarrow: \varphi \text{ ist wahr in } \m{M}
     \end{align*}
 
-    $ \varphi $ \underline{universell richtig} gdw. $ \forall \sigma$-Strukturen $ \calM: \calM \models \varphi $.
+    $ \varphi $ \underline{universell richtig} gdw. $ \forall \sigma$-Strukturen $ \m{M}: \m{M} \models \varphi $.
     \begin{bsp}
         $ (\forall x) x = x $ bzw. $ (\forall v_n) v_n = v_n $
     \end{bsp}
 
-    Zwei $ L $-Strukturen $ \calM, \calN $ heißen \underline{elementar äquivalent}, falls
+    Zwei $ L $-Strukturen $ \m{M}, \m{N} $ heißen \underline{elementar äquivalent}, falls
     \begin{align}
-        & \forall \text{ Sätze } \sigma: \calM \models \sigma \Leftrightarrow \calN \models \sigma \label{eq:elem-equiv-1} \\
-        \Leftrightarrow & \forall \text{ Sätze } \sigma: \calM \models \sigma \Rightarrow \calN \models \sigma \label{eq:elem-equiv-2}
+        & \forall \text{ Sätze } \sigma: \m{M} \models \sigma \Leftrightarrow \m{N} \models \sigma \label{eq:elem-equiv-1} \\
+        \Leftrightarrow & \forall \text{ Sätze } \sigma: \m{M} \models \sigma \Rightarrow \m{N} \models \sigma \label{eq:elem-equiv-2}
     \end{align}
 
     \begin{proof}
         Es gelte \eqref{eq:elem-equiv-2}, wir zeigen \eqref{eq:elem-equiv-1}.
         Sei $ \sigma $ beliebiger Satz.
-        $ \calM \models \sigma \Rightarrow \calN \models \sigma $
+        $ \m{M} \models \sigma \Rightarrow \m{N} \models \sigma $
         gilt trivialerweise nach Vorbedingung \eqref{eq:elem-equiv-2}.
 
-        Es bleibt zu zeigen, dass $ \calN \models \sigma \Rightarrow \calM \models \sigma $.
-        Es gelte $ \calN \models \sigma $.
-        Angenommen, es gilt nicht: $ \calM \models \sigma $, dann muss gelten, dass $ \calM \models \neg \sigma $.
+        Es bleibt zu zeigen, dass $ \m{N} \models \sigma \Rightarrow \m{M} \models \sigma $.
+        Es gelte $ \m{N} \models \sigma $.
+        Angenommen, es gilt nicht: $ \m{M} \models \sigma $, dann muss gelten, dass $ \m{M} \models \neg \sigma $.
         Offensichtlich ist $ \neg \sigma $ ein Satz.
-        \eqref{eq:elem-equiv-2} $ \Rightarrow \calN \models \neg \sigma $, also nicht $ \calN \models \sigma $. Widerspruch.
+        \eqref{eq:elem-equiv-2} $ \Rightarrow \m{N} \models \neg \sigma $, also nicht $ \m{N} \models \sigma $. Widerspruch.
     \end{proof}
 
-    Sei $ \calK $ eine Klasse von $ L $-Strukturen einer festen Sprache $ L $.
-    eine Eigenschaft $ P$ dieser Struktur aus $ \calK $ heißt
+    Sei $ \m{K} $ eine Klasse von $ L $-Strukturen einer festen Sprache $ L $.
+    eine Eigenschaft $ P$ dieser Struktur aus $ \m{K} $ heißt
     \begin{itemize}
-        \item \underline{Eigenschaft 1. Stufe} (first order property) \underline{in $ \calK $}, falls es einen Satz $ \sigma $ gibt mit:
+        \item \underline{Eigenschaft 1. Stufe} (first order property) \underline{in $ \m{K} $}, falls es einen Satz $ \sigma $ gibt mit:
         \begin{equation*}
-            \forall \calA \in \calK : \calA \text{ hat Eigenschaft } P \Leftrightarrow \calA \models \sigma
+            \forall \m{A} \in \m{K} : \m{A} \text{ hat Eigenschaft } P \Leftrightarrow \m{A} \models \sigma
         \end{equation*}
-        \item \underline{allgemeine Eigenschaft 1. Stufe} (general first order property) \underline{in $ \calK $}, falls es eine Menge $ \Sigma $ von Sätzen gibt mit:
+        \item \underline{allgemeine Eigenschaft 1. Stufe} (general first order property) \underline{in $ \m{K} $}, falls es eine Menge $ \Sigma $ von Sätzen gibt mit:
         \begin{equation*}
-            \forall \calA \in \calK : \calA \text{ hat Eigenschaft } P \Leftrightarrow \calA \models \Sigma
+            \forall \m{A} \in \m{K} : \m{A} \text{ hat Eigenschaft } P \Leftrightarrow \m{A} \models \Sigma
         \end{equation*}
-        Wir schreiben $ \calA \models \Sigma :\Leftrightarrow \forall \sigma \in \Sigma: \calA \models \sigma $.
+        Wir schreiben $ \m{A} \models \Sigma :\Leftrightarrow \forall \sigma \in \Sigma: \m{A} \models \sigma $.
     \end{itemize}
     Ist $ P $ eine Eigenschaft 1. Stufe für die Klasse aller $ L $-Strukturen, so heißt $ P $ auch \underline{endlich axiomatisierbar}.
 
@@ -319,13 +312,13 @@
         \end{equation*}
         mit $ v_i \not = v_j := \neg (v_i = v_j) $.
 
-        $ \calM \models \exists^{\geq n} \Leftrightarrow | M | \geq n $.
+        $ \m{M} \models \exists^{\geq n} \Leftrightarrow | M | \geq n $.
         Also ist die Eigenschaft, mindestens $ n $ Elemente zu haben, eine Eigenschaft 1. Stufe und endlich axiomatisierbar.
 
-        Ebenso $ \exists!^n = \exists^{\geq n} \land \neg \exists^{\geq(n+1)} $, $ \calM \models \exists!^n \Leftrightarrow |M| = n $.
+        Ebenso $ \exists!^n = \exists^{\geq n} \land \neg \exists^{\geq(n+1)} $, $ \m{M} \models \exists!^n \Leftrightarrow |M| = n $.
 
         Sei $ \Sigma = \{ \exists^{\geq n} \mid n \in \mathbb{N} \} $.
-        $ \calM \models \Sigma \Leftrightarrow M $ unendlich.
+        $ \m{M} \models \Sigma \Leftrightarrow M $ unendlich.
         Die Eigenschaft, unendlich zu sein, ist eine allgemeine Eigenschaft 1. Stufe.
         Aber: Die Eigenschaft, endlich zu sein, ist keine allgemeine Eigenschaft 1. Stufe.
     \end{bsp}
@@ -340,18 +333,18 @@
 
         Sei $ \sigma = \sigma_1 \land \sigma_2 \land \sigma_3 $.
 
-        Sei $ \calA = (A, R) \models \sigma \Leftrightarrow R $  ist eine teilweise Ordnung auf $ A $.
+        Sei $ \m{A} = (A, R) \models \sigma \Leftrightarrow R $  ist eine teilweise Ordnung auf $ A $.
 
         \begin{itemize}
             \item $ \sigma_4 = (\forall v_1) (\forall v_2) R(v_1, v_2) \lor R(v_2, v_1) $ \hfill \textit{(Linearität)}
         \end{itemize}
 
-        $ \calA = (A, R) \models \sigma \land \sigma_4 \Leftrightarrow R $ ist eine lineare Ordnung auf $ A $.
+        $ \m{A} = (A, R) \models \sigma \land \sigma_4 \Leftrightarrow R $ ist eine lineare Ordnung auf $ A $.
 
         Die Eigenschaft einer binären Relationsstruktur, eine teilweise geordnete Menge zu sein, bzw. linear geordnet zu sein, ist also endlich axiomatisierbar.
 
-        Sei $ \calA = (A, \leq) $ teilweise geordnet.
-        $ \calA $ hat ein größtes Element, falls $ \calA \models \sigma_{gr} $, wobei $ \sigma_{gr} = (\exists y) (\forall x) x \leq y $. \textit{($ x \leq y $ ist Abkürzung für $ \leq(x, y) $)}.
+        Sei $ \m{A} = (A, \leq) $ teilweise geordnet.
+        $ \m{A} $ hat ein größtes Element, falls $ \m{A} \models \sigma_{gr} $, wobei $ \sigma_{gr} = (\exists y) (\forall x) x \leq y $. \textit{($ x \leq y $ ist Abkürzung für $ \leq(x, y) $)}.
     \end{bsp}
 
 \end{document}
