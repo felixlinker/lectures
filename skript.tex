@@ -347,4 +347,83 @@
         $ \m{A} $ hat ein größtes Element, falls $ \m{A} \models \sigma_{gr} $, wobei $ \sigma_{gr} = (\exists y) (\forall x) x \leq y $. \textit{($ x \leq y $ ist Abkürzung für $ \leq(x, y) $)}.
     \end{bsp}
 
+    \begin{bsp}[Gruppen]
+        Z.B. $ \sigma = \big(1, (\cdot, inv), \emptyset, \sigma'\big) $ mit $ \sigma'(\cdot) = 2 $, $ \sigma'(inv) = 1 $.
+        Sei $ \sigma_{\m{G}} $ die Konjunktion von:
+        \begin{enumerate}
+            \item $ \forall x, y, z: (x \cdot y) \cdot z = x \cdot ( y \cdot z) $ \hfill \textit{(Assoziativität)}
+            \item $ \forall x: x \cdot 1 = x $ \hfill \textit{(Rechts Eins)}
+            \item $ \forall x: x \cdot inv(x) = 1 $ \hfill \textit{(Inverse)}
+        \end{enumerate}
+        $ \m{G} = \big(G, 1, (\cdot, inv), \emptyset\big) $ ist Gruppe gdw. $ \m{G} \models \sigma_{\m{G}} $.
+        $ \m{G} $ ist abelsche Gruppe gdw. $ \m{G} \models \sigma_{C\m{G}} $, wobei $ \sigma_{C\m{G}} = \sigma_{\m{G}} \land \forall x \forall y: x \cdot y = y \cdot x $.
+        Falls $ \sigma_1 = (1, \cdot, \emptyset, \sigma_1') $ mit $ \sigma_1'(\cdot) = 2 $, so ersetze den 3. Satz durch $ \forall x \exists x: x \cdot y = 1 $ \textit{(Existenz von Rechtsinversen)}.
+        Neue Konjunktion: $ \sigma_{\m{G}}^1 $; $ \m{G} $ Gruppe gdw. $ \m{G} \models \sigma_{\m{G}}^1 $.
+    \end{bsp}
+
+    \begin{bsp}[Ringe]
+        $ \sigma = \big((0, 1), (+, \underbrace{-}_{\text{inv. bzgl. }+}, \cdot), \emptyset, \sigma' \big) $, mit $ \sigma'(+) = \sigma'(\cdot) = 2 $ und $ \sigma'(-) = 1 $.
+        Sei $ \sigma_{C\m{G}}' $ wie $ \sigma_{C\m{G}} $ mit folgenden Ersetzungen:
+        \begin{itemize}
+            \item $ \cdot $ wird ersetzt durch $ + $
+            \item $ 1 $ wird ersetzt durch $ 0 $
+            \item $ inv $ wird ersetzt durch $ - $
+        \end{itemize}
+        Sei $ \sigma_{\m{R}} $ die Konjunktion von $ \sigma_{C\m{G}}' $ mit:
+        \begin{enumerate}
+            \item $ \forall x, y, x : (x \cdot y) \cdot z = x \cdot (y \cdot z) $
+            \item $ \forall x: x \cdot 1 = x \land 1 \cdot x = x $
+            \item $ \forall x, y, z: (x + y) \cdot z = (x \cdot z) + (y \cdot z) $ \hfill \textit{(Rechtsdistributivität)}
+            \item $ \forall x, y, z: z \cdot (x + y) = (z \cdot x) + (z \cdot y) $ \hfill \textit{(Linksdistributivität)}
+        \end{enumerate}
+        $ \m{R} $ ist ein Ring gdw. $ \m{R} \models \sigma_{\m{R}} $.
+        $ \m{R} $ ist ein kommutativer Ring gdw $ \m{R} \models \sigma_{C\m{R}} $ mit $ \sigma_{C\m{R}} = \sigma_{\m{R}} \land (\text{``$\;\cdot$'' ist kommutativ}) $.
+    \end{bsp}
+
+    \begin{bsp}[Körper]
+        % F steht für Feld; in der alten englischen Literatur werden Körper noch als Feld bezeichnet
+        Sei $ \sigma_F $ die Konjunktion von $ \sigma_{C\m{R}} $ mit
+        \begin{enumerate}
+            \item $ \neg(0 = 1) $
+            \item $ \forall x: \big( \neg( x = 0 ) \rightarrow \exists y: x \cdot y = 1 \big) $
+        \end{enumerate}
+        $ \m{K} $ ist ein Körper gdw. $ \m{K} \models \sigma_F $.
+
+        Sei $ p \in \mathbb{N} $.
+        Ein Körper $ \m{K} $ hat Charakteristik $ p $, falls $ p $ die kleinste natürliche Zahl ist mit $ p \cdot 1 = 0 $, wobei $ p \cdot 1 := \Big( ... \underbrace{\big((1 + 1) + 1 \big) + ... + 1}_{p \text{ Einsen}} \Big) $.
+        Falls $ p $ existiert, so ist $ p $ eine Primzahl.
+        Sonst: $ char(\m{K}) = 0 $.
+        \underline{Beispiel}: $ (\mathbb{Z}/p\mathbb{Z}, +, \cdot, 0, 1) $.
+
+        \begin{anm}
+            $ \mathbb{Z}/p\mathbb{Z}, +, \cdot ) $ ist Körper gdw. $ p $ ist eine Primzahl.
+        \end{anm}
+
+        Sei $ p $ eine Primzahl, $ n \in \mathbb{N} $.
+        \begin{enumerate}%[label*=\alph*)]
+            \item Bis auf Isomorphie existiert genau ein Körper mit $ p^n $ Elementen.
+            \item Wenn $ \m{K} $ ein endlicher Körper ist, dann ex. Primzahl $ p $ und $ n \in \mathbb{N} $ mit $ | \m{K} | = p^n $ und $ char(\m{K}) = p $.
+            Es gibt auch unendliche Körper der Charakteristik $ p $.
+        \end{enumerate}
+        Die Eigenschaft, ein Körper der Charakteristik $ p $ zu sein, ist eine Eigenschaft 1. Stufe.
+        Die Eigenschaft, ein Körper der Charakteristik  0 zu sein ist eine allgemeine Eigenschaft 1. Stufe, beschreibbar durch $ \{ \sigma_F \} \cup \big\{ \neg (p \cdot 1 = 0) \mid p \in \mathbb{N} \big\} $.
+        Aber letzteres ist \underline{keine} Eigenschaft 1. Stufe.
+    \end{bsp}
+
+    \begin{bsp}[Vektorräume]
+        ~\par
+        \textbf{1. Möglichkeit:}
+        Gegeben Körper $ \m{K} $.
+        $ \m{V} = \big(V, 0, +, (r_k)_{k \in \m{K}} \big) $ mit:
+        \begin{itemize}
+            \item $ (V, 0, +) $ ist abelsche Gruppe
+            \item $ \forall k \in \m{K}: r_k : V \rightarrow V $ Fuktion (``Multiplikation'' mit k von rechts)
+            \item Übliche Gesetze fordern (Assoziativität, Distributivität, ...); wir schreiben $ x \cdot k := r_k(x) $
+            \item $ \forall x: (x \cdot k) \cdot k' = x \cdot (k \cdot k') $ Abkürzung für $ r_{k'}\big(r_k(x)\big) = r_{k \cdot k'}(x) $.
+            \item $ \forall x, y: (x + y ) \cdot k = (x \cdot k) + (y \cdot k) $
+            \item $ 0 \cdot k = 0 $, $ \forall x: x \cdot 0 = 0 \land x \cdot 1 = x $
+        \end{itemize}
+
+    \end{bsp}
+
 \end{document}
