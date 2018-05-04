@@ -72,15 +72,15 @@
         \end{equation}
         mit einer Menge $ M $ (oftmals $ M \neq \emptyset $), Indexmengen $ \m{C}, \m{F}, \m{R} $.
         Wobei gilt $ c^\m{M} \in M $ für $ c \in \m{C} $, $ f^\m{M} : M^{n_f} \rightarrow M $, $ n_f \in \mathbb{N} $ für $ f \in \m{F} $, $ R^\m{M} \subseteq M^{m_R} $ für $ R \in \m{R} $.
+
+        $ \m{M} $ heißt \underline{$ \sigma $-Struktur} bzw. $ \m{M} $ und $ \sigma $ \underline{passen zueinander}, falls:
+        \begin{enumerate}
+            \item $ n_f = \sigma'(f) $ für $ f \in \m{F} $
+            \item $ m_R = \sigma'(R) $ für $ R \in \m{R} $
+        \end{enumerate}
+
+        $ c^\m{M} $ heißt auch \underline{Interpretation} von $ c $ in $ \m{M} $; Analoges gilt für $ f^\m{M}, R^\m{M} $.
     \end{dfn}
-
-    $ \m{M} $ heißt \underline{$ \sigma $-Struktur} bzw. $ \m{M} $ und $ \sigma $ \underline{passen zueinander}, falls:
-    \begin{enumerate}
-        \item $ n_f = \sigma'(f) $ für $ f \in \m{F} $
-        \item $ m_R = \sigma'(R) $ für $ R \in \m{R} $
-    \end{enumerate}
-
-    $ c^\m{M} $ heißt auch \underline{Interpretation} von $ c $ in $ \m{M} $; Analoges gilt für $ f^\m{M}, R^\m{M} $.
 
     \begin{dfn}
         Seien $ \m{M} = \struc{M}{\m{M}}{} $, $ \m{N} = \struc{N}{\m{N}}{} $ zwei $ \sigma $-Strukturen.
@@ -90,32 +90,32 @@
             \item $ h\big(f^\m{M}(a_1, ..., a_n)\big) = f^\m{N}\big(h(a_1), ..., h(a_n)\big) $ für alle Funktionssymbole $ f \in \m{F} $ mit $ n = \sigma'(f) $, $ a_1, ..., a_n \in M $.
             \item \label{itm:homomorphismus-3} $ (a_1, ..., a_n) \in R^\m{M} \Rightarrow \big(h(a_1), ..., h(a_n)) \in R^\m{N} $ für alle Relationensymbole $ R \in \m{R} $, $ n = \sigma'(R) $, $ a_1, ..., a_n in M $.
         \end{enumerate}
+
+            Für einen Homomorphismus $ h $ von $ \m{M} $ nach $ \m{N} $ schreibt man auch $ h : \m{M} \rightarrow \m{N} $.
+
+            $ h $ heißt \underline{stark}, wenn für alle $ R \in \m{R} $ mit $ n = \sigma'(R) $, $ b_1, ..., b_n \in h(M) \subseteq N $ mit $ (b_1, ..., b_n) \in R^\m{N} $ gilt:
+            \begin{equation}
+                \label{eq:staerke}
+                \exists a_1, ..., a_n \in M : (a_1, ..., a_n) \in R^\m{M}, h(a_i) = b_i, 1 \leq i \leq n
+            \end{equation}
+
+            $ h $ heißt \underline{Einbettung}, falls $ h $ stark und injektiv ist.
+            Ist $ h $ injektiv, dann lassen sich Bedingung \ref{itm:homomorphismus-3} und Gleichung \eqref{eq:staerke} folgendermaßen zusammenfassen; für alle $ R \in \m{R} $, $ n = \sigma'(R) $, $ a_1, ..., a_n \in M $:
+            \begin{equation}
+                (a_1, ..., a_n) \in R^\m{M} \Leftrightarrow \big(h(a_1), ..., h(a_n)\big) \in R^\m{N}
+            \end{equation}
+
+            $ h $ heißt Isomorphimus, wenn $ h $ eine surjektive Einbettung ist.
+            Man schreibt $ \m{M} \cong \m{N} $, wenn ein Isomorphimus $ h : \m{M} \rightarrow \m{N} $ existiert.
+            Sind $ h : \m{M} \rightarrow \m{N} $, $ g : \m{N} \rightarrow \m{K} $ Isomorphismen, dann sind auch folgende Funktionen ein Isomorphimus:
+            \begin{itemize}
+                \item $ h^{-1} $
+                \item $ g \circ h : \m{M} \rightarrow \m{K} $
+            \end{itemize}
+
+            $ h : \m{M} \Rightarrow \m{M} $ heißt \underline{Automorphismus von $ \m{M} $}, wenn $ h $ ein Isomorphimus ist.
+            Die Struktur $ Aut(\m{M}) = \big( \{ h : \m{M} \rightarrow \m{M} \mid h \text{ Automorphismus} \}, \circ \big) $ mit Komposition $ \circ $ ist eine Gruppe.
     \end{dfn}
-
-    Für einen Homomorphismus $ h $ von $ \m{M} $ nach $ \m{N} $ schreibt man auch $ h : \m{M} \rightarrow \m{N} $.
-
-    $ h $ heißt \underline{stark}, wenn für alle $ R \in \m{R} $ mit $ n = \sigma'(R) $, $ b_1, ..., b_n \in h(M) \subseteq N $ mit $ (b_1, ..., b_n) \in R^\m{N} $ gilt:
-    \begin{equation}
-        \label{eq:staerke}
-        \exists a_1, ..., a_n \in M : (a_1, ..., a_n) \in R^\m{M}, h(a_i) = b_i, 1 \leq i \leq n
-    \end{equation}
-
-    $ h $ heißt \underline{Einbettung}, falls $ h $ stark und injektiv ist.
-    Ist $ h $ injektiv, dann lassen sich Bedingung \ref{itm:homomorphismus-3} und Gleichung \eqref{eq:staerke} folgendermaßen zusammenfassen; für alle $ R \in \m{R} $, $ n = \sigma'(R) $, $ a_1, ..., a_n \in M $:
-    \begin{equation}
-        (a_1, ..., a_n) \in R^\m{M} \Leftrightarrow \big(h(a_1), ..., h(a_n)\big) \in R^\m{N}
-    \end{equation}
-
-    $ h $ heißt Isomorphimus, wenn $ h $ eine surjektive Einbettung ist.
-    Man schreibt $ \m{M} \cong \m{N} $, wenn ein Isomorphimus $ h : \m{M} \rightarrow \m{N} $ existiert.
-    Sind $ h : \m{M} \rightarrow \m{N} $, $ g : \m{N} \rightarrow \m{K} $ Isomorphismen, dann sind auch folgende Funktionen ein Isomorphimus:
-    \begin{itemize}
-        \item $ h^{-1} $
-        \item $ g \circ h : \m{M} \rightarrow \m{K} $
-    \end{itemize}
-
-    $ h : \m{M} \Rightarrow \m{M} $ heißt \underline{Automorphismus von $ \m{M} $}, wenn $ h $ ein Isomorphimus ist.
-    Die Struktur $ Aut(\m{M}) = \big( \{ h : \m{M} \rightarrow \m{M} \mid h \text{ Automorphismus} \}, \circ \big) $ mit Komposition $ \circ $ ist eine Gruppe.
 
     \begin{dfn}
         Seien $ \m{M} = \struc{M}{\m{N}}{} $, $ \m{N} = \struc{N}{\m{N}}{} $ $\sigma $-Strukturen.
@@ -126,10 +126,10 @@
             \item $ f^\m{N}(\bar{a}) = f^\m{M}(\bar{a}) $ für $ f \in \m{F} $, $ \bar{a} \in N^{\sigma'(f)} $
             \item $ \bar{a} \in R^\m{N} \Leftrightarrow \bar{a} \in R^\m{M} $, d.~h. $ R^\m{N} = R^\m{M} \cap N^{\sigma'(R)} $ für $ \bar{a} \in N^{\sigma'(R)} $
         \end{enumerate}
-    \end{dfn}
 
-    Wenn $ \m{N} $ eine Teilstruktur von $ \m{M} $ ist, schreibt man auch $ \m{N} \subseteq \m{M} $.
-    $ \m{M} $ wird dann auch \underline{Ober- oder Erweiterungsstruktur von $ \m{N} $} genannt.
+            Wenn $ \m{N} $ eine Teilstruktur von $ \m{M} $ ist, schreibt man auch $ \m{N} \subseteq \m{M} $.
+            $ \m{M} $ wird dann auch \underline{Ober- oder Erweiterungsstruktur von $ \m{N} $} genannt.
+    \end{dfn}
 
     \begin{dfn}
         Seien $ \sigma_0 = \sign{0} $, $ \sigma_1 = \sign{1} $ zwei Signaturen.
@@ -138,6 +138,8 @@
         Sei $ \m{M} = \struc{M}{\m{M}}{1} $ eine $ \sigma_1 $-Struktur.
         Dann heißt $ \m{M} \vert_{\sigma_0} = \struc{M}{\m{M}}{0} $ das \underline{Redukt} von $ \m{M} $ auf $ \sigma_0 $ od. auch $ \sigma_0 $-Redukt.
         Umgekehrt heißt $ \m{M} $ \underline{Expansion} von $ \m{N} := \m{M} \vert_{\sigma_0} $ auf $ \sigma_1 $, d.~h. $ \m{M} $ entsteht aus $ \m{N} $ durch Hinzunahme geeigneter (bzgl. $ \sigma_1 $) Konstanten/Funktionen/Relationen.
+
+        Eine Signatur $ \sigma = \sign{} $ heißt \underline{konstantenlos}, falls $ \m{C} = \emptyset $ und \underline{(rein) relational}, falls $ \m{C} = \m{F} = \emptyset $.
     \end{dfn}
 
     \begin{bsp}
@@ -145,8 +147,6 @@
         $ \m{G} $ ist ein Redukt von $ (G, 1^\m{G}, \circ^\m{G}, \circ^{-1\m{G}}) $.
         Von $ \m{R} = (R, 0, 1, +, \cdot) $ ist $ (R, 0, +) $ ein Redukt.
     \end{bsp}
-
-    Eine Signatur $ \sigma = \sign{} $ heißt \underline{konstantenlos}, falls $ \m{C} = \emptyset $ und \underline{(rein) relational}, falls $ \m{C} = \m{F} = \emptyset $.
 
     \section{Sprachen und Formeln}
 
