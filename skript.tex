@@ -16,10 +16,10 @@
 \newtheorem{konstr}[dfn]{Konstruktion}
 \newtheorem{lem}[dfn]{Lemma}
 \newtheorem{satz}[dfn]{Satz}
+\newtheorem*{bsp}{Beispiel}
 
 \theoremstyle{plain}
 \newtheorem*{anm}{Anmerkung}
-\newtheorem*{bsp}{Beispiel}
 \newtheorem{bem}[dfn]{Bemerkung}
 
 \mdfdefinestyle{standard}{
@@ -29,12 +29,25 @@
     leftmargin=5pt,
     rightmargin=5pt,
     linewidth=1pt,
+    roundcorner=4pt,
+    backgroundcolor=black!5
+}
+\mdfdefinestyle{reduced}{
+    skipabove=5pt,
+    skipbelow=5pt,
+    innerbottommargin=12pt,
+    leftmargin=5pt,
+    rightmargin=5pt,
+    linewidth=0.2pt,
     roundcorner=4pt
 }
 \surroundwithmdframed[style=standard]{dfn}
 \surroundwithmdframed[style=standard]{konstr}
 \surroundwithmdframed[style=standard]{lem}
 \surroundwithmdframed[style=standard]{satz}
+\surroundwithmdframed[style=reduced]{bsp}
+\surroundwithmdframed[style=reduced]{anm}
+\surroundwithmdframed[style=reduced]{bem}
 
 \newcommand{\m}[1]{\mathcal{#1}}
 
