@@ -433,19 +433,200 @@
     \end{bsp}
 
     \begin{bsp}[Vektorräume]
-        ~\par
-        \textbf{1. Möglichkeit:}
         Gegeben Körper $ \m{K} $.
-        $ \m{V} = \big(V, 0, +, (r_k)_{k \in \m{K}} \big) $ mit:
-        \begin{itemize}
-            \item $ (V, 0, +) $ ist abelsche Gruppe
-            \item $ \forall k \in \m{K}: r_k : V \rightarrow V $ Fuktion (``Multiplikation'' mit k von rechts)
-            \item Übliche Gesetze fordern (Assoziativität, Distributivität, ...); wir schreiben $ x \cdot k := r_k(x) $
-            \item $ \forall x: (x \cdot k) \cdot k' = x \cdot (k \cdot k') $ Abkürzung für $ r_{k'}\big(r_k(x)\big) = r_{k \cdot k'}(x) $.
-            \item $ \forall x, y: (x + y ) \cdot k = (x \cdot k) + (y \cdot k) $
-            \item $ 0 \cdot k = 0 $, $ \forall x: x \cdot 0 = 0 \land x \cdot 1 = x $
-        \end{itemize}
+        \begin{description}
+            \item[1. Möglichkeit]
+            $ \m{V} = \big(V, 0, +, (r_k)_{k \in \m{K}} \big) $ mit:
+            \begin{itemize}
+                \item $ (V, 0, +) $ ist abelsche Gruppe
+                \item $ \forall k \in \m{K}: r_k : V \rightarrow V $ Fuktion (``Multiplikation'' mit k von rechts)
+                \item Übliche Gesetze fordern (Assoziativität, Distributivität, ...); wir schreiben $ x \cdot k := r_k(x) $
+                \item $ \forall x: (x \cdot k) \cdot k' = x \cdot (k \cdot k') $ Abkürzung für $ r_{k'}\big(r_k(x)\big) = r_{k \cdot k'}(x) $.
+                \item $ \forall x, y: (x + y ) \cdot k = (x \cdot k) + (y \cdot k) $
+                \item $ 0 \cdot k = 0 $, $ \forall x: x \cdot 0 = 0 \land x \cdot 1 = x $
+            \end{itemize}
 
+            \item[2. Möglichkeit]
+            $ \m{V} = \big(X, (0_V, 0_K, 1_K), +, \cdot, V, K\big) $ mit:
+            \begin{itemize}
+                \item $ V , K $ ein-stellige Relationen
+                \item $ X = V \; \dot\cup \; K $
+                \item $ 0_V \in V, 0_k, 1_K \in K $
+                \item $ +, \cdot : X \times X \rightarrow X $ Abbildung
+                \item Für alle Element, die zu $ V $ gehören, die Axiome der abelschen Gruppe fordern.
+                \item Für alle Element, die zu $ K $ gehören, die Körperaxiome fordern.
+                \item $ \forall x, y, z: (V(x) \land K(y) \land x \cdot y = z) \rightarrow V(z) $
+                \item Für Elemente aus $ V $ bzw. $ K $ die üblichen Gesetze (d.~h. Assoziativität, Distributivität, usw.) fordern.
+            \end{itemize}
+            Somit ist die Eigenschaft, ein $ K $-Vektorraum zu sein, endlich axiomatisierbar.
+
+            \item[3. Möglichkeit]
+            Über eine ``Zweisortige'' Struktur $ \m{V} = \big(V, K, (0_V, 0_K, 1_K), (+_V, +_K, \cdot_K, \cdot)\big) $ mit Konstanten, Funktionen $ +_V, +_K, \cdot_K $ für ede Sorte (=Grundmenge) $ V, K $ und $ \cdot : V \times K \rightarrow $ mit der Forderung üblicher Gesetze.
+
+            Diese Definition ist jedoch nicht mit der Definition von Strukturen, wie wir sie eingeführt haben, vereinbar.
+        \end{description}
     \end{bsp}
+
+    \begin{bsp}[Boole'sche Algebren]
+        ~\par
+        \begin{description}
+            \item[1. Möglichkeit]
+            \label{itm:boolesche-algebra-struktur}
+            $ \m{B}= (B, 0, 1, \lor, \land, *) $ mit $ \sigma'(\lor) = \sigma'(\land) = 2 $ und $ \sigma'(*) = 1 $.
+            $ \m{B} $ ist Boole'sche Algebra, wenn gilt:
+            \begin{itemize}
+                \item $ \forall x, y, z: (x \land y) \land z = x \land (y \land z) $ bzw. $ (x \lor y) \lor z = x \lor (y \lor z) $ \hfill \textit{(Assoz.)}
+                \item $ \forall x, y: x \land y = y \land x $ bzw. $ x \lor y = y \lor x $ \hfill \textit{(Kom.)}
+                \item $ \forall x, y, z: (x \land y) \lor z = (x \lor z) \land (y \lor z) $ bzw. $ (x \lor y) \land z = (x \land z) \lor (y \land z) $ \hfill \textit{(Distr.)}
+                \item $ \forall x, y: (x \land y) \lor y = y $ bzw. $ (x \lor y) \land y = y $ \hfill \textit{(Absorption)}
+                \item $ \forall x: x \land x^* = 0 $ bzw. $ x: x \lor x^* = 1 $ \hfill \textit{(Komplemente)}
+                \item $ x^{**} = x $
+                \item $ x \land y)^* = x^* \lor y^* $ bzw. $ (x \lor y)^* = x^* \land y^* $ \hfill \textit{(de'Morgan)}
+            \end{itemize}
+            \begin{bsp}
+                $ \m{B} = \big(\{0, 1\}, 0, 1, \lor, \land, \neg\big) $.
+                Oder für eine Menge $ M $ die Struktur $ \big(\m{P}(M), \emptyset, M, \cup, \cap, \bar\; \big) $.
+            \end{bsp}
+
+            \item[2. Möglichkeit]
+            \label{itm:boolesche-algebra-ordnung}
+            $ \m{B} = (B, \leq) $ teilweise Ordnung.
+            Für $ A \subseteq B $, $ x \in B $ gilt
+            \begin{enumerate}[series=teilweise-ordnung-voraussetzung]
+                \item $ x \leq A \Leftrightarrow x $ ist untere Schranke von $ A  \Leftrightarrow \forall a \in A: x \leq a $
+                \item $ x \geq A \Leftrightarrow x $ ist obere Schranke von $ A \Leftrightarrow \forall a \in A: x \geq a $
+                \item $ x = inf(A) \Leftrightarrow x $ ist die größte untere Schranke von $ A \Leftrightarrow (x \leq A) \land \forall y: (y \leq A \rightarrow y \leq ) $
+                \item $ x = sup(A) \Leftrightarrow x $ ist die kleinste obere Schranke von $ A \Leftrightarrow (A \leq x) \land \forall y: (A \leq y \rightarrow x \leq y) $
+            \end{enumerate}
+
+            Wir schreiben $ x = y \lor z $ als Abkürzung für
+            \begin{equation*}
+                y \leq x \land z \leq x \land \forall w: (y \leq w \land z \leq w) \rightarrow x \leq w
+            \end{equation*}
+            Und wir schreiben $ x = y \land z $ für
+            \begin{equation*}
+                x \leq y \land x \leq z \land \forall w: (w \leq y \land w \leq z) \rightarrow w \leq x
+            \end{equation*}
+
+            \begin{enumerate}[resume*=teilweise-ordnung-voraussetzung]
+                \item $ A = \{y, z\}: x = y \lor z \text{ für } x = sup\big(\{y, z\}\big) $ bzw. $ x = y \land z \text{ für } x = inf\big(\{y, z\}\big) $
+            \end{enumerate}
+
+            Desweiteren fordern wir:
+            \begin{description}
+                \item[Distributivität]
+                \begin{equation}
+                \label{eq:boolesch-distributiv}
+                    \begin{aligned}
+                        \forall x, y, z, u, v, w, p: & \big((u = x \land y) \land (v = x \lor z) \land (w = y \lor z) \land (p = v \land w)\big) \\
+                        & \rightarrow p = u \lor z
+                    \end{aligned}
+                \end{equation}
+                (Dies drückt unter Verwendung der obigen Abkürzung aus, dass $ (x \land y) \lor z = (x \lor z) \land (y \lor z) $.)
+            \end{description}
+
+            $ (B, \leq) $ ist ein Verband gdw. $ \forall x, y \exists w, z: w = x \land y, z = x \lor z $.
+
+            $ (B, \leq) $ ist ein distributiver Verband gdw. $ (B, \leq) $ ist ein Verband und es es gilt \eqref{eq:boolesch-distributiv}.
+
+            \begin{anm}
+                Sei $ (B, \leq) $ ein Verband.
+                Betrachten wir die Sätze
+                \begin{equation}
+                \label{eq:verband-equiv-1}
+                    \forall x, y, z \in B: (x \land y) \lor z = (x \lor z) \land (y \lor z)
+                \end{equation}
+                \begin{equation}
+                \label{eq:verband-equiv-2}
+                    \forall x, y, z \in B: (x \lor y) \land z = (x \land z) \lor (y \land z)
+                \end{equation}
+                Es gilt dann, dass \eqref{eq:verband-equiv-1} gdw. \eqref{eq:verband-equiv-2}.
+            \end{anm}
+
+            \begin{description}
+                \item[Kleinste/Größte Element]
+                \begin{equation*}
+                    \exists 0,1 \in B : \forall x: 0 \leq x \land y \leq 1
+                \end{equation*}
+
+                \item[Komplemente in Verbänden]
+                \begin{equation*}
+                    \forall x \exists y: (x \land y) = 0 \land (x \lor y = 1)
+                \end{equation*}
+            \end{description}
+
+            $ (B, \leq) $ erfüllt diese Sätze mit $ 0 \not = 1 $ gdw $ (B, \leq) $ ist Boole'sche Algebra.
+        \end{description}
+
+        \paragraph{Äquivalenz der Möglichkeiten}
+        Wir betrachten nun, dass beide vorgestellten Möglichkeiten der Darstellung einer Boole'schen Algebra äquivalent sind.
+
+        \underline{Hinrichtung}: Sei $ \m{B} = (B, 0, 1, \lor, \land, * ) $ eine Boole'sche Algebra (im ersten Sinn).
+        Definiere $ \leq $ auf $ B $ durch:
+        \begin{align*}
+            x \leq y : & \Leftrightarrow x \lor y = y \\
+            & \Leftrightarrow^! x \land y = x
+        \end{align*}
+        Dann ist $ (B, \leq) $ eine Boole'sche Algebra im 2. Sinn und
+        \begin{align*}
+            \forall x, y, z \in B: & x \lor y = z \Leftrightarrow z = sup \big(\{x, y\}\big) \\
+            \text{bzw. } & x \land y = z \Leftrightarrow z = inf \big(\{x, y\}\big)
+        \end{align*}
+
+        \underline{Rückrichtung}: Sei $ (B, \leq) $ eine Boole'sche Algebra im 2. Sinn mit kleinstem Element $ 0 $, größtem Element $ 1 $ und $ 0 \not = 1 $.
+        Wir definieren $ \lor : B \times B \rightarrow B $ als
+        \begin{equation*}
+            x \lor y := sup\big(\{x, y\}\big)
+        \end{equation*}
+        sowie $ \land : B \times B \rightarrow B $ als
+        \begin{equation*}
+            x \land y := inf\big(\{x, y\}\big)
+        \end{equation*}
+        Wir definieren $ * : B \rightarrow B $ als $ x^* := y $, wenn $ y \in B $ mit
+        \begin{equation*}
+            x \land y = 0 \text{ sowie } x \lor y = 1
+        \end{equation*}
+
+        Dann ist $ (B, 0, 1, \lor, \land, *) $ eine Boole'sche Algebra im 1. Sinn und
+        \begin{equation*}
+            x \lor y = y \Leftrightarrow y \leq y
+        \end{equation*}
+
+        $ * $ ist eine wohldefinierte Abbildung aufgrund der folgenden Anmerkung:
+        \begin{anm}
+            Sei $ (B, \leq) $ distributiver Verband mit $ 0, 1 $.
+            Dann gilt, falls $ x, y, y' \in B $ und $ x \land y = 0 $, $ x \lor y = 1 $, $ x \land y' = 0 $, $ x \lor y' = 1 $, dann ist $ y = y' $.
+            D.~h. Komplemente sind (falls sie existieren) eindeutig.
+        \end{anm}
+
+        \begin{bsp}
+            Für Boole'sche Algebra im 2. Sinn:
+            \begin{enumerate}
+                \item $ \big(\{0,1\}, \leq \big) $
+                \item $ \big(\m{P}(M), \subseteq) $, $ M \not = \emptyset $ mit:
+                \begin{align*}
+                    X ,Y \in \m{P}(M): & \; X \lor Y = X \cup Y \\
+                    \text{und } & \; X \land Y = X \cap Y
+                \end{align*}
+            \end{enumerate}
+        \end{bsp}
+    \end{bsp}
+
+    Sei $ \Sigma $ eine Menge von Sätzen für Signatur $ \sigma $.
+    $ \Sigma $ hat ein Modell, falls gilt, es ex. eine $ \sigma $-Struktur $ \m{M} $ mit $ \m{M} \models \Sigma $, d.~h. $ \forall \sigma' \in \Sigma: M \models \sigma' $.
+    Eine Struktur $ \m{M} = (M,...) $ heißt \underline{endlich}, falls gilt, dass $ M $ endlich ist.
+
+    \begin{satz}[Kompaktheitssatz]
+        Sei $ \Sigma $ eine beliebige Menge von Sätzen zur Signatur $ \sigma $.
+        Dann gilt: $ \Sigma $ hat ein Modell gdw. jede endliche Teilmenge von $ \Sigma $ hat ein Modell.
+    \end{satz}
+
+    \begin{proof}
+        ~\par
+        \begin{description}
+            \item[``$ \Rightarrow $''] Trivial.
+            \item[``$ \Leftarrow $'']
+        \end{description}
+    \end{proof}
 
 \end{document}
