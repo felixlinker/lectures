@@ -618,12 +618,128 @@
     $ \Sigma $ hat ein Modell, falls gilt, es ex. eine $ \sigma $-Struktur $ \m{M} $ mit $ \m{M} \models \Sigma $, d.~h. $ \forall \sigma' \in \Sigma: M \models \sigma' $.
     Eine Struktur $ \m{M} = (M,...) $ heißt \underline{endlich}, falls gilt, dass $ M $ endlich ist.
 
-    \begin{satz}[Kompaktheitssatz]
+    \begin{satz}[Kompaktheitssatz]\label{satz:kompaktheitssatz}
         Sei $ \Sigma $ eine beliebige Menge von Sätzen zur Signatur $ \sigma $.
-        Dann gilt: $ \Sigma $ hat ein Modell gdw. jede endliche Teilmenge von $ \Sigma $ hat ein Modell.
+        Dann gilt: $ \Sigma $ hat ein Modell gdw. jede endliche Teilmenge von $ \Sigma $ hat ein Modell:
+        \begin{equation*}
+            M \models \Sigma \Leftrightarrow \forall \sigma \in \Sigma: M \models \Sigma
+        \end{equation*}
+    \end{satz}
+
+    \begin{kor}\label{kor:unendliches-modell}
+        Sei $ \Sigma $ eine Menge von Sätzen.
+        Falls $ \Sigma $ beliebig große endliche Modelle hat, so hat $ \Sigma $ auch ein unendliches Modell.
+    \end{kor}
+
+    \begin{proof}
+        Sei $ \Sigma^+ = \Sigma \cup \{ \exists^{\geq n} \mid n \in \mathbb{N} \} $.
+        Nach Vorbedingung für $ \Sigma $ gilt, dass $ \forall E \subseteq \mathbb{N} : E \text{ endlich } \rightarrow E \cup \{ \exists^{\geq n} \mid n \in E \} $ hat ein Modell.
+        Somit können wir Satz \ref{satz:kompaktheitssatz} auf $ \Sigma^+ $ anwenden, also hat $ \Sigma^+ $ ein Modell $ M $.
+        Somit gilt $ M \models \Sigma $ und $ M $ ist unendlich.
+    \end{proof}
+
+    \begin{kor}
+        Die Eigenschaft, eine endliche Menge zu sein, ist keine endlich allgemeine Eigenschaft 1. Stufe.
+    \end{kor}
+
+    \begin{proof}
+        Angenommen, $ \Sigma $ wäre eine Menge von Sätzen mit $ a \models \Sigma \Leftrightarrow a $ ist endlich.
+        $ \Sigma $ hat beliebig große, endliche Modelle (Mengen mit beliebigen Konstanten, Funktionen, Relationen).
+        Nach Korollar \ref{kor:unendliches-modell} hat $ \Sigma  $ ein unendliches Modell $ a $. Widerspruch.
+    \end{proof}
+
+    \paragraph{Körper}
+    $ \Delta := \{ \sigma_F \} \cup \{ \neg(\overbrace{p \cdot 1}^{1 + ... + 1} = 0 ) \mid p \in \mathbb{N} \} $.
+    $ a \models \Delta $ gdw. $ a $ ist Körper der Charakteristik $ 0 $.
+    Also ist die Eigenschaft, ein Körper der Charakteristik 0 zu sein, eine allgemeine Eigenschaft 1. Stufe.
+
+    \begin{satz}
+        Die Eigenschaft, ein Körper der Charakteristik $ 0 $ zu sein, ist keine Eigenschaft 1. Stufe.
     \end{satz}
 
     \begin{proof}
+        Angenommen, es gäbe einen Satz $ \sigma $ mit: $ a \models \sigma \Leftrightarrow a $ ist Körper der Charakteristik $ 0 $.
+
+        Betrachte $ \Delta' := \underbrace{\Delta}_{\text{s.o.}} \cup \{ \neg \sigma \} $.
+        Jede endliche Teilmenge von $ \Delta' $ hat ein Modell (einen Körper der Charakteristik $ p $, wobei $ p $ geeignete Primzahl ist).
+        Nach Satz \ref{satz:kompaktheitssatz} hat $ \Delta' $ ein Modell $ a $, also $ a \models \Delta $ und $ a \models \neg \sigma $.
+        Widerspruch.
+    \end{proof}
+
+    \section{Elementare Substrukturen}
+
+    \begin{dfn}
+        Seien $ \m{M} $, $ \m{N} $ zwei $ \sigma $-Strukturen.
+        $ \m{M} $ heißt \underline{elementare Substruktur (elementares Submodell)} von $ \m{N} $ gdw. $ M \subseteq N $ und für alle Formeln $ \varphi $ und Bewertungen $ x \in M^\mathbb{N} $ gilt:
+        \begin{equation*}
+            (\m{M}, x) \models \varphi \Leftrightarrow (\m{N}, x) \models \varphi
+        \end{equation*}
+        Das heißt:
+        \begin{equation*}
+            \forall \varphi = \varphi(v_1, ..., v_n) \forall x_1, ..., x_n \in M: \m{M} \models \varphi[x_1, ..., x_n] \Leftrightarrow \m{N} \models \varphi[x_1, ..., x_n]
+        \end{equation*}
+
+        Wir schreiben $ \m{M} \preceq \m{N} $, wenn $ \m{M} $ elementare Substruktur von $ \m{N} $ ist.
+        Eine Abbildung $ h : M \rightarrow N $ heißt \underline{elementare Einbettung}, falls:
+        \begin{equation*}
+            \forall \varphi = \varphi(v_1, ..., v_n) \forall x_1, ..., x_n \in M:
+            M \models \varphi[x_1, ..., x_n] \Leftrightarrow N \models \varphi[h(x_1), ..., h(x_n)]
+        \end{equation*}
+
+        Da $ \m{M} \subseteq \m{N} \Leftrightarrow M \subseteq N \land \forall \text{Atomformeln } \varphi \forall x \in M^\mathbb{N}: (\m{M}, x) \models \varphi \Leftrightarrow (\m{N}, x) \models \varphi $ (Beweis in Übung), gilt $ \m{M} \preceq \m{N} \Rightarrow \m{M} \subseteq \m{N} $.
+
+        Es ist klar, dass $ \m{M} \preceq \m{N} \Leftrightarrow M \subseteq N $ und $ id: M \rightarrow N $ ist eine elementare Einbettung.
+
+        Üben:
+        \begin{enumerate}
+            \item Wenn $ h: M \rightarrow N $ elementare Einbettung ist, dann ist $ h : \m{M} \rightarrow \m{N} $ eine Einbettung.
+
+            \item Wenn $ h : \m{M} \rightarrow \m{N} $ elementare Einbettung ist, dann ist $ h(\m{M}) := \m{N} |_{h(M)} \preceq \m{N} $.
+            Wenn darüber hinanus $ h $ injektiv ist, gilt dann die Umkehrung?
+
+            \item wenn $ h : \m{M} \rightarrow \m{N} $ ein Isomorphimus ist, dann ist $ h $ eine elementare Einbettung.
+        \end{enumerate}
+
+        Wenn eine elementare Einbettung $ h: \m{M} \rightarrow \m{N} $ ex., dann gilt $ \underbrace{\m{M} \equiv \m{N}}_{\text{nur Sätze betrachtet}} $.
+
+        Wenn $ \m{M} \subseteq \m{N} $ und $ \m{M} \equiv \m{N} $, dann \underline{nicht} $ \m{M} \preceq \m{N} $.
+    \end{dfn}
+
+    \begin{bsp}
+        Seien $ \m{M} = (\mathbb{N}_+, \leq) $, $ \m{N} = (\mathbb{N}_0, \leq) $.
+        Es gilt trivialerweise $ \m{M} \subseteq \m{N} $.
+        Es gilt $ \m{M} \cong \m{N} $, da $ n \mapsto n - 1 $ ein Isomorphimus ist, also $ \m{M} \equiv \m{N}$.
+        Aber $ \m{M} \not \preceq \m{N} $, denn für $ \varphi(x) = \exists y: y < x $ gilt $ \m{N} \models \varphi(1) $, aber $ \m{M} \not \models \varphi(1) $.
+    \end{bsp}
+
+    Elementare Substrukturen sind wichtig, um $ \m{M} \equiv \m{N} $ über den Umweg $ \m{M} \preceq \m{N} $ zu zeigen: Beweise funktionieren häufig durch Induktion über Formelaufbau (nicht Sätze), also werden Aussagen über Formeln benötigt.
+
+    \begin{lem}
+        Sei $ \m{M} \subseteq \m{N} $.
+        \begin{align*}
+            \m{M} \preceq \m{N} \Leftrightarrow & \forall \text{Formeln }\varphi \forall x \in M^\mathbb{N} \forall v_n: \\
+            & \bigg( \underbrace{(\m{N}, x) \models (\exists v_n)\varphi}_{\exists b \in N: \big(\m{N}, x(n/b)\big) \models \varphi} \Leftrightarrow \exists a \in M : \big(\m{N}, x(n/a)\big) \models \varphi \bigg)
+        \end{align*}
+    \end{lem}
+
+    \begin{proof}
+        ~\par
+        \begin{description}
+            \item[``$ \Rightarrow $'']
+            \begin{description}
+                \item[``$ \Rightarrow $'']
+                Sei $ \varphi $ Formel, $ x \in M^\mathbb{N} $, $ v_n $ eine Variable.
+                \begin{align*}
+                    (\m{N}, x) \models (\exists v_n) \varphi & \stackrel{\m{M} \preceq \m{N}}{\Leftrightarrow} (\m{M}, x) \models (\exists v_n) \varphi \\
+                    & \Leftrightarrow \exists a \in M: \bigg( \big(\m{M}, x(n/a)\big) \models \varphi \stackrel{\m{M} \preceq \m{N}}{\Rightarrow} \big(\m{N}, x(n/a)\big) \models \varphi \bigg)
+                \end{align*}
+                \item[``$ \Leftarrow $''] trivial, da $ a \in M \subseteq N $.
+            \end{description}
+            \item[``$ \Leftarrow $''] z. Z. ist $ \forall \varphi \forall x \in M^\mathbb{N}: (\m{M}, x) \models \varphi \Leftrightarrow (\m{N}, x) \models \varphi $.
+        \end{description}
+    \end{proof}
+
+    \begin{proof}[Beweis zu Satz \ref{satz:kompaktheitssatz}]
         ~\par
         \begin{description}
             \item[``$ \Rightarrow $''] Trivial.
