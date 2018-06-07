@@ -715,6 +715,7 @@
     Elementare Substrukturen sind wichtig, um $ \m{M} \equiv \m{N} $ über den Umweg $ \m{M} \preceq \m{N} $ zu zeigen: Beweise funktionieren häufig durch Induktion über Formelaufbau (nicht Sätze), also werden Aussagen über Formeln benötigt.
 
     \begin{lem}
+    \label{lem:elem-substr}
         Sei $ \m{M} \subseteq \m{N} $.
         \begin{align*}
             \m{M} \preceq \m{N} \Leftrightarrow & \forall \text{Formeln }\varphi \forall x \in M^\mathbb{N} \forall v_n: \\
@@ -736,6 +737,166 @@
                 \item[``$ \Leftarrow $''] trivial, da $ a \in M \subseteq N $.
             \end{description}
             \item[``$ \Leftarrow $''] z.Z. (*) $ \forall \varphi \forall x \in M^\mathbb{N}: (\m{M}, x) \models \varphi \Leftrightarrow (\m{N}, x) \models \varphi \equiv \m{M} \preceq \m{N} $.
+            Beweis durch Induktion über Formelauf.
+
+            \begin{description}
+                \item[IA] Sei $ \varphi $ eine Atomformel. (*) klar wegen $ \m{M} \subseteq \m{N} $ (+ Übungsaufgabe).
+
+                \item[IS] Angenommen $ \psi, \chi $ sind Formeln, für die (*) gilt.
+                Dann ist klar, dass (*) für $ \neg \psi $ und $ \psi \land \chi $ gilt.
+
+                z.Z. (*) gilt für $ (\exists v_n) \psi $.
+                \begin{align*}
+                    (\m{M}, x) \models (\exists v_n) \psi \Leftrightarrow & \exists a \in M: \underbrace{\big(\m{M}, x(n/a)\big) \models \psi}_{\Leftrightarrow (\m{N}, x(n/a) \models \psi) \text{ (IV)}} \\
+                    \Leftrightarrow & \exists a \in N: \big(\m{N}, x(n/a)\big) \models \psi & M \subseteq N \text{ bzw. Voraussetzung} \\
+                    \Leftrightarrow & (\m{N}, x) \models (\exists v_n) \psi
+                \end{align*}
+            \end{description}
+        \end{description}
+    \end{proof}
+
+    \begin{kor}
+    \label{kor:elem-substr}
+        Sei $ \m{M} \subseteq \m{N} $.
+        \begin{align*}
+            \m{M} \preceq \m{N} \Leftrightarrow & \forall \varphi = \varphi(v_0, ..., v_n) \forall a_0, ..., a_{n - 1} \in M: \\
+            & \exists b \in N: \m{N} \models \varphi[a_0, ..., a_{n - 1}, b] \Rightarrow \exists a \in M: \m{N} \models \varphi[a_0, ..., a_{n - 1}, a]
+        \end{align*}
+    \end{kor}
+
+    \begin{proof}
+        Trivial nach Lemma \ref{lem:elem-substr}.
+    \end{proof}
+
+    \begin{bsp}
+        Wir betrachten $ (\mathbb{Q}, \leq) \preceq (\mathbb{R}, \leq) $.
+        Aber $ (\mathbb{Q}, \leq) \not \cong (\mathbb{R}, \leq) $, da $ | \mathbb{Q} | \neq | \mathbb{R} | $ oder, da $ (\mathbb{R}, \leq) $ Dedekind-vollständig, aber $ (\mathbb{Q}, \leq) $ nicht Dedekind-vollständig ist.
+
+        \begin{anm}
+            \begin{equation*}
+                Q = (\mathbb{Q}, +, \cdot, 0, 1) \not \equiv (\mathbb{R}, +, \cdot, 0, 1) = R
+            \end{equation*}
+            Sei $ \sigma = (\exists x) x \cdot x = 1 + 1 $, dann $ R \models \sigma $, aber $ Q \not \models \sigma $.
+        \end{anm}
+
+        \begin{proof}
+            $ (\mathbb{Q}, \leq) \subseteq (\mathbb{R}, \leq) $ trivial.
+            Sei $ \varphi = \varphi(v_0, ..., v_n) $ Formel, $ a_0, ..., a_{n - 1} \in \mathbb{Q} $, $ b \in \mathbb{R} $ mit $ (\mathbb{R}, \leq) \models \varphi[a_0, ..., a_{n - 1}, b] $.
+            Nach Korollar \ref{kor:elem-substr}.
+
+            z.Z. $ \exists a \in \mathbb{Q}: (\mathbb{R}, \leq) \models \varphi[a_0, ..., a_{n - 1}, a] $.
+            O.B.d.A. gelte $ a_0 < a_1 < ... < a_{n - 1} $ und $ b \in \mathbb{R} \setminus \mathbb{Q} $.
+            Sei etwa $ a_k < b < a_{k+1} $ mit $ k \in \{0, ..., n - 2\} $.
+            Wähle $ a \in \mathbb{Q} $ mit $ a_k < a < a_{k + 1 } $.
+
+            Definiere $ h: \mathbb{R} \rightarrow \mathbb{R} $
+            \begin{equation*}
+                x \mapsto \begin{cases}
+                    x & x \leq a_k \lor a_{k + 1} \leq x \\
+                    \frac{a - a_k}{b - a_k} \cdot (c - a_k) + a_k & a_k \leq x \leq b \\
+                    \frac{a_{k + 1} - a}{a_{k + 1} - b} \cdot (x - b) + a & b \leq x \leq a_{k + 1}
+                \end{cases}
+            \end{equation*}
+
+            Daraus folgt, dass $ h: (\mathbb{R}, \leq) \rightarrow (\mathbb{R}, \leq) $ ist ein Isomorphimus mit $ h(a_i) = a_i $ für $ i = 0, ..., n - 1 $.
+            Somit ist $ h $ eine elementare Einbettung.
+            Zusammen mit $ (\mathbb{R}, \leq) \models \varphi[a_0, ..., a_{n - 1}, b] $ folgt dann, dass
+            \begin{align*}
+                (\mathbb{R}, \leq) \models & \varphi[h(a_0), ..., h(a_{n - 1}), h(b)] \\
+                = & \varphi[a_0, ..., a_{n - 1}, a]
+            \end{align*}
+        \end{proof}
+    \end{bsp}
+
+    \begin{anm}
+        Beachte, wenn $ \m{M}_1 \subseteq \m{M}_2 $ und $ \m{M}_2 \subseteq \m{M}_3 $, dann $ \m{M}_1 \subseteq \m{M}_3 $. (s. Übung).
+        Und wenn $ \m{M}_1 \preceq \m{M}_2 $ und $ \m{M}_2 \preceq \m{M}_3 $, dann $ \m{M}_1 \preceq \m{M}_3 $.
+    \end{anm}
+
+    Sei $ (\alpha, \leq) $ eine geordnete Menge.
+    Eine Folge $ (\m{M}_i)_{i \in \alpha} $ von $ \bar{\sigma} $-Strukturen heißt \underline{Kette}, falls
+    \begin{equation*}
+        \forall i, j \in \alpha: i < j \Rightarrow \m{M}_i \subseteq \m{M}_j
+    \end{equation*}
+
+    Sei nun $ (\m{M}_i)_{i \in \alpha} $ eine Kette und $ \m{M}_i = \struc{M_i}{\m{M}_i}{} $.
+    Insbesondere $ c^{\m{M}_i} = c^{\m{M}_j} $ für alle $ c \in \m{C} $.
+    Setze
+    \begin{itemize}
+        \item $ M := \bigcup_{i \in \alpha} M_i $
+        \item $ c^\m{M} := c^{\m{M}_i} $ \hfill ($ c \in \m{C}, i \in \alpha $ beliebig)
+        \item $ R^\m{M} := \bigcup_{i \in \alpha} R^{\m{M}_i} $ \hfill ($ R \in \m{R} $)
+        \item $ f^\m{M} := \bigcup_{i \in \alpha} f^{\m{M}i} $ \hfill ($ f \in \m{F} $)
+    \end{itemize}
+
+    Dann gilt $ \m{M} := \struc{M}{\m{M}}{} $ ist eine $ \bar{\sigma} $-Struktur mit $ \m{M}_i \subseteq \m{M} $ für alle $ i \in \alpha $.
+    $ \m{M} $ kann sich wesentlich von den $ \m{M}_i $'s unterscheiden:
+    \begin{bsp}
+        $ \alpha = (\mathbb{N}, \leq) $, $ \m{M}_i = (\{1, ..., i\}, \leq) $ ($ i \in \alpha $).
+        Dann $ \m{M} = (\mathbb{N}, \leq) $.
+        \begin{itemize}
+            \item $ \varphi = \exists y \forall x: x \leq y $
+            \item $ \m{M}_i \models \varphi $ für alle $ i \in \alpha $
+            \item Aber $ \m{M} \not \models \varphi $
+        \end{itemize}
+    \end{bsp}
+
+    Eine Kette von $ \bar{\sigma} $-Strukturen heißt \underline{elementare Kette}, falls $ \forall i, j \in \alpha: i < j \Rightarrow \m{M}_i \preceq \m{M}_j $.
+
+    \begin{satz}
+        Sei $ (\m{M}_i)_{i \in \alpha} $ eine elementare Kette von $ \bar{\sigma} $-Strukturen und $ \m{M} = \bigcup_{i \in \alpha} \m{M}_i $.
+        Dann gilt
+        \begin{equation*}
+            \forall i \in \alpha: \m{M}_i \preceq \m{M}
+        \end{equation*}
+    \end{satz}
+
+    \begin{proof}
+        Wir zeigen
+        \begin{equation}
+        \label{eq:elem-kette-zz}
+            \begin{aligned}
+                \forall \varphi = \varphi(v_0, ..., v_n) \forall i \in \alpha \forall a_0, ..., a_n \in M_i: \\ \m{M}_i \models \varphi[a_0, ..., a_n] \Leftrightarrow \m{M} \models \varphi[a_0, ..., a_n]
+            \end{aligned}
+        \end{equation}
+
+        Beweis von \eqref{eq:elem-kette-zz} über Induktion über Formelaufbau.
+        \begin{description}
+            \item[IA] Sei $ \varphi $ eine Atomformel: Klar, da $ \m{M}_i \subseteq \m{M} $.
+            \item[IS] Es gelte \eqref{eq:elem-kette-zz} für $ \varphi $ und $ \psi $.
+            z.Z. \eqref{eq:elem-kette-zz} gilt für $ \neg \varphi $, $ \varphi \land \psi $, $ (\exists v_n) \varphi $.
+            Für $ \neg $ und $ \land $ klar.
+
+            Sei $ \chi(v_0, ..., v_{n -1 }) = (\exists v_n) \varphi(v_0, ..., v_n) $.
+            Seien $ a_0, ..., a_{n - 1} \in M_i $.
+            \begin{align*}
+                & \m{M}_i \models \chi[a_0, ..., a_{n - 1}] \\
+                \Leftrightarrow & \exists a_n \in M_i: M_i \models \varphi[a_0, ..., a_{n - 1}, a_n] \\
+                \Rightarrow & \m{M} \models \varphi[a_0, ..., a_{n - 1}, a_n] & \text{Voraussetzung} \\
+                \Rightarrow & \m{M} \models \chi[a_0, ..., a_{n - 1}]
+            \end{align*}
+
+            \begin{align*}
+                & \m{M} \models \chi[a_0, ..., a_{n - 1}] \\
+                \Rightarrow & \exists a_n \in M: \m{M} \models \varphi[a_0, ..., a_{n - 1}, a_n] \\
+                \Rightarrow & \exists j \in \alpha: a_n \in M_j
+            \end{align*}
+            Fallunterscheidung:
+            \begin{description}
+                \item[$ j \leq i $]
+                \begin{align*}
+                    \Rightarrow & a_n \in M_i \\
+                    \Rightarrow & \m{M}_i \models \varphi[a_0, ..., a_{n - 1}, a_n] & \text{Voraussetzung} \\
+                    \Rightarrow & \m{M}_i \models \chi[a_0, ..., a_{n - 1}]
+                \end{align*}
+                \item[$ i < j $]
+                \begin{align*}
+                    \Rightarrow & a_0, ..., a_{k - 1} \in \m{M}_j \\
+                    \Rightarrow & \m{M}_j \models \varphi[a_0, ..., a_{n - 1}, a_n] & \text{Voraussetzung} \\
+                    \Rightarrow & \m{M}_j \models \chi[a_0, ..., a_{n - 1}] \\
+                    \Rightarrow & \m{M}_i \models \chi[a_0, ..., a_{n -1}] & \m{M}_i \preceq \m{M}_j
+                \end{align*}
+            \end{description}
         \end{description}
     \end{proof}
 
