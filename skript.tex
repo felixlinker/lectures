@@ -73,7 +73,7 @@
     Einfache Aussagen betreffen nur Elemente der Grundmenge und haben keine unendlichen Dis- oder Konjunktionen.
     Dies sind prädikatenlogische Aussagen erster Stufe.
 
-    \textit{Monadische Aussagen 2. Stufe erlaubten Quantifizierung über Teilmengen der Grundmenge; Aussagen 2. Stufe erlaubten zstl. Quantifizierung über Funktionen und Relationen.}
+    \textit{Monadische Aussagen 2. Stufe erlaubten Quantifizierung über Teilmengen der Grundmenge; Aussagen 2. Stufe erlaubten zusätzlich Quantifizierung über Funktionen und Relationen.}
 
     \section{Strukturen}
 
@@ -104,7 +104,7 @@
 
     \begin{dfn}
         Seien $ \m{M} = \struc{M}{\m{M}}{} $, $ \m{N} = \struc{N}{\m{N}}{} $ zwei $ \sigma $-Strukturen.
-        Ein Homomorphismus von $ \m{M} $ nach $ \m{N} $ ist eine Abbilung $ h : M \rightarrow N $ mit:
+        Ein Homomorphismus von $ \m{M} $ nach $ \m{N} $ ist eine Abbildung $ h : M \rightarrow N $ mit:
         \begin{enumerate}
             \item $ h(c^\m{M}) = c^\m{N} $ für allen Konstantensymbole $ c \in \m{C} $
             \item $ h\big(f^\m{M}(a_1, ..., a_n)\big) = f^\m{N}\big(h(a_1), ..., h(a_n)\big) $ für alle Funktionssymbole $ f \in \m{F} $ mit $ n = \sigma'(f) $, $ a_1, ..., a_n \in M $.
@@ -441,7 +441,7 @@
             $ \m{V} = \big(V, 0, +, (r_k)_{k \in \m{K}} \big) $ mit:
             \begin{itemize}
                 \item $ (V, 0, +) $ ist abelsche Gruppe
-                \item $ \forall k \in \m{K}: r_k : V \rightarrow V $ Fuktion (``Multiplikation'' mit k von rechts)
+                \item $ \forall k \in \m{K}: r_k : V \rightarrow V $ Funktion (``Multiplikation'' mit k von rechts)
                 \item Übliche Gesetze fordern (Assoziativität, Distributivität, ...); wir schreiben $ x \cdot k := r_k(x) $
                 \item $ \forall x: (x \cdot k) \cdot k' = x \cdot (k \cdot k') $ Abkürzung für $ r_{k'}\big(r_k(x)\big) = r_{k \cdot k'}(x) $.
                 \item $ \forall x, y: (x + y ) \cdot k = (x \cdot k) + (y \cdot k) $
@@ -463,7 +463,7 @@
             Somit ist die Eigenschaft, ein $ K $-Vektorraum zu sein, endlich axiomatisierbar.
 
             \item[3. Möglichkeit]
-            Über eine ``Zweisortige'' Struktur $ \m{V} = \big(V, K, (0_V, 0_K, 1_K), (+_V, +_K, \cdot_K, \cdot)\big) $ mit Konstanten, Funktionen $ +_V, +_K, \cdot_K $ für ede Sorte (=Grundmenge) $ V, K $ und $ \cdot : V \times K \rightarrow $ mit der Forderung üblicher Gesetze.
+            Über eine ``zwei-sortige'' Struktur $ \m{V} = \big(V, K, (0_V, 0_K, 1_K), (+_V, +_K, \cdot_K, \cdot)\big) $ mit Konstanten, Funktionen $ +_V, +_K, \cdot_K $ für ede Sorte (=Grundmenge) $ V, K $ und $ \cdot : V \times K \rightarrow $ mit der Forderung üblicher Gesetze.
 
             Diese Definition ist jedoch nicht mit der Definition von Strukturen, wie wir sie eingeführt haben, vereinbar.
         \end{description}
