@@ -725,17 +725,17 @@
     \begin{proof}
         ~\par
         \begin{description}
-            \item[``$ \Rightarrow $'']
+            \item[``$ \Rightarrow $''] Sei $ \m{M} \preceq \m{N} $.
             \begin{description}
                 \item[``$ \Rightarrow $'']
                 Sei $ \varphi $ Formel, $ x \in M^\mathbb{N} $, $ v_n $ eine Variable.
                 \begin{align*}
-                    (\m{N}, x) \models (\exists v_n) \varphi & \stackrel{\m{M} \preceq \m{N}}{\Leftrightarrow} (\m{M}, x) \models (\exists v_n) \varphi \\
-                    & \Leftrightarrow \exists a \in M: \bigg( \big(\m{M}, x(n/a)\big) \models \varphi \stackrel{\m{M} \preceq \m{N}}{\Rightarrow} \big(\m{N}, x(n/a)\big) \models \varphi \bigg)
+                    (\m{N}, x) \models (\exists v_n) \varphi \Leftrightarrow & (\m{M}, x) \models (\exists v_n) \varphi & \m{M} \preceq \m{N} \\
+                    \Leftrightarrow & \exists a \in M: \bigg( \big(\m{M}, x(n/a)\big) \models \varphi \stackrel{\m{M} \preceq \m{N}}{\Rightarrow} \big(\m{N}, x(n/a)\big) \models \varphi \bigg)
                 \end{align*}
                 \item[``$ \Leftarrow $''] trivial, da $ a \in M \subseteq N $.
             \end{description}
-            \item[``$ \Leftarrow $''] z. Z. ist $ \forall \varphi \forall x \in M^\mathbb{N}: (\m{M}, x) \models \varphi \Leftrightarrow (\m{N}, x) \models \varphi $.
+            \item[``$ \Leftarrow $''] z.Z. (*) $ \forall \varphi \forall x \in M^\mathbb{N}: (\m{M}, x) \models \varphi \Leftrightarrow (\m{N}, x) \models \varphi \equiv \m{M} \preceq \m{N} $.
         \end{description}
     \end{proof}
 
