@@ -736,16 +736,20 @@
                 \end{align*}
                 \item[``$ \Leftarrow $''] trivial, da $ a \in M \subseteq N $.
             \end{description}
-            \item[``$ \Leftarrow $''] z.Z. (*) $ \forall \varphi \forall x \in M^\mathbb{N}: (\m{M}, x) \models \varphi \Leftrightarrow (\m{N}, x) \models \varphi \equiv \m{M} \preceq \m{N} $.
+            \item[``$ \Leftarrow $''] z.Z.:
+            \begin{equation}
+                \label{eq:elem-substr-zz}
+                \forall \varphi \forall x \in M^\mathbb{N}: (\m{M}, x) \models \varphi \Leftrightarrow (\m{N}, x) \models \varphi \equiv \m{M} \preceq \m{N}
+            \end{equation}
             Beweis durch Induktion über Formelauf.
 
             \begin{description}
-                \item[IA] Sei $ \varphi $ eine Atomformel. (*) klar wegen $ \m{M} \subseteq \m{N} $ (+ Übungsaufgabe).
+                \item[IA] Sei $ \varphi $ eine Atomformel. \eqref{eq:elem-substr-zz} klar wegen $ \m{M} \subseteq \m{N} $ (+ Übungsaufgabe).
 
-                \item[IS] Angenommen $ \psi, \chi $ sind Formeln, für die (*) gilt.
-                Dann ist klar, dass (*) für $ \neg \psi $ und $ \psi \land \chi $ gilt.
+                \item[IS] Angenommen $ \psi, \chi $ sind Formeln, für die \eqref{eq:elem-substr-zz} gilt.
+                Dann ist klar, dass \eqref{eq:elem-substr-zz} für $ \neg \psi $ und $ \psi \land \chi $ gilt.
 
-                z.Z. (*) gilt für $ (\exists v_n) \psi $.
+                z.Z. \eqref{eq:elem-substr-zz} gilt für $ (\exists v_n) \psi $.
                 \begin{align*}
                     (\m{M}, x) \models (\exists v_n) \psi \Leftrightarrow & \exists a \in M: \underbrace{\big(\m{M}, x(n/a)\big) \models \psi}_{\Leftrightarrow (\m{N}, x(n/a) \models \psi) \text{ (IV)}} \\
                     \Leftrightarrow & \exists a \in N: \big(\m{N}, x(n/a)\big) \models \psi & M \subseteq N \text{ bzw. Voraussetzung} \\
