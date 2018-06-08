@@ -79,17 +79,17 @@
 
     \begin{dfn}
         Eine \underline{Signatur} $ \sigma $ ist ein Quadrupel
-        \begin{equation}
+        \begin{equation*}
             \sigma = \sign{}
-        \end{equation}
+        \end{equation*}
         mit einer Menge von Konstantensymbolen $ \m{C} $, einer Menge von Funktionssymbolen $ \m{F} $, einer Menge von Relationensymbolen $ \m{R} $, einer Stelligkeitsfunktion $ \sigma' : \m{F} \cup \m{R} \rightarrow \mathbb{N} $.
     \end{dfn}
 
     \begin{dfn}
         Eine \underline{Struktur} $ \m{M} $ ist ein Quadrupel
-        \begin{equation}
+        \begin{equation*}
             \m{M} = \struc{M}{\m{M}}{}
-        \end{equation}
+        \end{equation*}
         mit einer Menge $ M $ (oftmals $ M \neq \emptyset $), Indexmengen $ \m{C}, \m{F}, \m{R} $.
         Wobei gilt $ c^\m{M} \in M $ für $ c \in \m{C} $, $ f^\m{M} : M^{n_f} \rightarrow M $, $ n_f \in \mathbb{N} $ für $ f \in \m{F} $, $ R^\m{M} \subseteq M^{m_R} $ für $ R \in \m{R} $.
 
@@ -121,9 +121,9 @@
 
             $ h $ heißt \underline{Einbettung}, falls $ h $ stark und injektiv ist.
             Ist $ h $ injektiv, dann lassen sich Bedingung \ref{itm:homomorphismus-3} und Gleichung \eqref{eq:staerke} folgendermaßen zusammenfassen; für alle $ R \in \m{R} $, $ n = \sigma'(R) $, $ a_1, ..., a_n \in M $:
-            \begin{equation}
+            \begin{equation*}
                 (a_1, ..., a_n) \in R^\m{M} \Leftrightarrow \big(h(a_1), ..., h(a_n)\big) \in R^\m{N}
-            \end{equation}
+            \end{equation*}
 
             $ h $ heißt Isomorphimus, wenn $ h $ eine surjektive Einbettung ist.
             Man schreibt $ \m{M} \cong \m{N} $, wenn ein Isomorphimus $ h : \m{M} \rightarrow \m{N} $ existiert.
