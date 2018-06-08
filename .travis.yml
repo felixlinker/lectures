@@ -1,0 +1,15 @@
+sudo: required
+dist: trusty
+before_install:
+- sudo apt-get -qq update && sudo apt-get install -y --no-install-recommends texlive-fonts-recommended texlive-latex-extra texlive-fonts-extra dvipng texlive-latex-recommended
+script:
+- pdflatex -interaction=nonstopmode -halt-on-error skript.tex
+deploy:
+  provider: releases
+  skip_cleanup: true
+  api_key:
+    secure: UXGFbd503PB7106OrrzzlBZAnDtOkL7bOiuvn46dc9u3jM9XN72QPXc0YQlBIvarCkucsByI6oldwXST4GOowJ3g31o/AdZFcFbbV12k+IwvVeVzJYMeIq/PlSWUAldvL3mCvicuX0d6Oj7koUo7yuTeUsRpIPEZsBnbGBOg4u9QjIcG2QqwXTZQd9vqJta56fP/3DRr4NIsVbie+gfnaex8RpNs9nrsNsWbzLQ/n6Usr6VbaiEA+yhongk3kldSMjatYuQuoBAkGhq0IuD9kb8G2QQUrIYXFNt7/+PxXtlB+aly9LeoSTdsoB/fSd2bTQErPCNIAJKVpw46JZT2/2qrUzpQe8cY8KZLUg21ySJ/ZOHQLNL/Rk/E+5+SRChLpZUtLAWjptVCZ0IKcBgbQHPKarcOFGxY0dbTajdZsHEq2fy+G27UW1OYR/MB6Nb+MqyTlikRp0MVR1HjIRIK/spm/oRPFPp3cnFP+52Fx0/QTxMMa7sOyLGYo36zC8eE0EwGudvMf/VbGxXDX21IgUWiW5pzF6NFMUL/orFK+qEJ1nfQJjvZJM5CRmtJOIVzeFjENyfGuyHAWb6JXAmMEpuoK5eieC3z4FCMk2krKi7SNwAy2ZQ+BD1sWWGJdDa2hqeI5PFk6VI7555R8ZfigH3DKJnWmmQBAMosWLnfr9o=
+  file: skript.pdf
+  on:
+    repo: felixlinker/lectures
+    branch: logik_modelltheorie
