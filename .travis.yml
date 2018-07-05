@@ -3,7 +3,7 @@ services: docker
 script:
   # We use the docker image from https://hub.docker.com/r/rekka/tectonic/
   - docker pull rekka/tectonic
-  - docker run --mount src=$TRAVIS_BUILD_DIR,target=/usr/tex,type=bind rekka/tectonic tectonic skript.tex
+  - docker run --mount src=$TRAVIS_BUILD_DIR/,target=/usr/tex,type=bind rekka/tectonic tectonic skript.tex
 dist: trusty
 # before_install:
 # - sudo apt-get -qq update && sudo apt-get install -y --no-install-recommends texlive-fonts-recommended texlive-latex-extra texlive-fonts-extra dvipng texlive-latex-recommended texlive-pictures
